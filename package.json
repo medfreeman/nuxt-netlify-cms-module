@@ -1,0 +1,75 @@
+{
+  "name": "nuxt-netlify-cms",
+  "description": "Netlify CMS integration with nuxt.js",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/module.js",
+  "author": "Mehdi Lahlou <mehdi.lahlou@free.fr>",
+  "repository": "https://github.com/medfreeman/nuxt-netlify-cms-module.git",
+  "scripts": {
+    "#<git hooks>": "handled by husky",
+    "precommit": "lint-staged",
+    "#</git hooks>": "handled by husky",
+    "lint": "eslint --ignore-path .gitignore --fix \"**/*.js\"",
+    "test": "yarn run lint",
+    "build": "babel --ignore /__tests__/ -d ./dist ./src",
+    "watch": "babel -w  --ignore /__tests__/ -d ./dist ./src",
+    "prepublish": "yarn build -s"
+  },
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "dependencies": {
+    "js-yaml": "^3.9.1",
+    "style-loader": "^0.18.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^4.5.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.7.0",
+    "git-exec-and-restage": "^1.0.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.4",
+    "prettier": "^1.6.1"
+  },
+  "lint-staged": {
+    "*.js": [
+      "git-exec-and-restage prettier --write --parser=babylon --"
+    ]
+  },
+  "babel": {
+    "presets": "babel-preset-env",
+    "plugins": [
+      [
+        "transform-object-rest-spread",
+        {
+          "useBuiltIns": true
+        }
+      ]
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "babel"
+    ],
+    "extends": [
+      "eslint:recommended"
+    ],
+    "env": {
+      "node": true,
+      "es6": true
+    }
+  }
+}

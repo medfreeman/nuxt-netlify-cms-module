@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-- '6'
-- '7'
 - '8'
+- '7'
+- '6'
 env:
 - CXX=g++-4.8
 addons:
@@ -16,7 +16,10 @@ matrix:
 cache: yarn
 before_install:
 - yarn config set no-progress
+- yarn global add greenkeeper-lockfile@1
+before_script: greenkeeper-lockfile-update
 script: yarn test
+after_script: greenkeeper-lockfile-upload
 deploy:
   provider: npm
   email: mlahlou@protonmail.ch

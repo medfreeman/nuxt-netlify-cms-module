@@ -19,6 +19,7 @@
 - Automatically build Netlify CMS through a seamless integration with nuxt.js webpack instance
 - [Automatically serve Netlify CMS to a chosen path](#adminpath), in development and production builds
 - [Support Netlify CMS config.yml](#netlify-cms-configyml), with automatic rebuild on change
+- [Meant to be used with nuxtent-module](https://github.com/nuxt-community/nuxtent-module), that allows nuxt to work with static content files
 
 ## Setup
 - Add `nuxt-netlify-cms` devDependency using yarn or npm to your project

@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+- '6'
+- '7'
+- '8'
+env:
+- CXX=g++-4.8
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+matrix:
+  fast_finish: true
+cache: yarn
+before_install:
+- yarn config set no-progress
+script: yarn test
+deploy:
+  provider: npm
+  email: mlahlou@protonmail.ch
+  api_key:
+    secure: BBAzKU6rnL58Rx4RqqZk7wClnqeJJzBpFQf/Hd95vo3OK1vtT+gcZupRog8awReFZp6CF6AVQizfK2O+t5VfqI58N4BgWP9DTs6ZHnXUvV4u0Djlr5hDUuk0spIi6Som/kyJ0ytaeu68JUK31xZa0VJQPmyQZ11JH/LoyP8BISm84B80g8pBhOXnp1nexU+Kn2DWXMDWX6OKP+y8xcuN/NEBzIrFmPg9o/D7gN41MkJRmQ5tsCjlO2seiv7e6azZKk1JeF7KNIb8dae3Ae55vFrNggPmbYYQt30nGxXgmL0STTFkKxFsAf4glIN1Ge2z4vUsFbMJSADnnaBSiwouQVJ3o4MAyEIm66oLT+vOxkwfta3raYjytQ7oTEJBTFKGuFFpunj/tOIjv07sReWJ+9yjlplcwYafqKU2g+JzHx2Mw86pDx5u1MeVB6T2OuHKd9xcnWrZ0Tj7Wki83/YV4/qKK8tcVGGptmKkUTix+WEW3Fi+mJEA4z/jJRCDhUtuhdXFzoC0HOzPmTAQX3JwuBomhuH84Orb3QlZjsXnJ+xic/ycjppfNJL3v9MK8oHQTkGmuUKuA6QjyZc8RM9a2ZGpVHxZrLqhP8Wo6epU36tXncuOpTrkjJ27lSacGEkGrfzVf77VmdLqChwDfmXR5Nqw7sie1eHSCM9R3bhaw6I=
+  on:
+    tags: true
+  skip_cleanup: true

@@ -1,5 +1,7 @@
 # nuxt-netlify-cms-module
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/medfreeman/nuxt-netlify-cms-module.svg)](https://greenkeeper.io/)
+
 [![npm version](https://img.shields.io/npm/v/nuxt-netlify-cms.svg)](https://www.npmjs.com/package/nuxt-netlify-cms)
 [![npm](https://img.shields.io/npm/dt/nuxt-netlify-cms.svg?style=flat-square)](https://npmjs.com/package/nuxt-netlify-cms)
 [![Build Status](https://img.shields.io/travis/medfreeman/nuxt-netlify-cms-module.svg?label=build)](https://travis-ci.org/medfreeman/nuxt-netlify-cms-module)

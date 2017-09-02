@@ -33,4 +33,9 @@ describe("netlify-cms module", () => {
     const html = await get("/");
     expect(html).toContain("Works!");
   });
+
+  test("admin", async () => {
+    const html = await get("/admin/");
+    expect(html).toMatchSnapshot();
+  });
 });

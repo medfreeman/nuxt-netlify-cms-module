@@ -18,7 +18,7 @@ before_install:
 - yarn config set no-progress
 - yarn global add greenkeeper-lockfile@1
 before_script: greenkeeper-lockfile-update
-script: yarn test
+script: yarn test && yarn codecov
 after_script: greenkeeper-lockfile-upload
 deploy:
   provider: npm

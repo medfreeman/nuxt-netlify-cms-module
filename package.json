@@ -11,7 +11,8 @@
     "precommit": "lint-staged",
     "#</git hooks>": "handled by husky",
     "lint": "eslint --ignore-path .gitignore --fix \"**/*.js\"",
-    "test": "yarn run lint",
+    "test": "cross-env NODE_ENV=test jest",
+    "pretest": "yarn lint -s",
     "build": "babel --ignore /__tests__/ -d ./dist ./src",
     "watch": "babel -w  --ignore /__tests__/ -d ./dist ./src",
     "prepublish": "yarn build -s"
@@ -30,18 +31,23 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
+    "codecov": "^2.3.0",
+    "cross-env": "^5.0.5",
     "debug": "^3.0.1",
     "eslint": "^4.5.0",
     "eslint-config-i-am-meticulous": "^6.0.1",
     "eslint-config-prettier": "^2.4.0",
     "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jest": "^20.0.3",
     "git-exec-and-restage": "^1.0.1",
     "husky": "^0.14.3",
+    "jest": "^20.0.4",
     "lint-staged": "^4.0.4",
     "netlify-cms": "^0.5.0-beta.1",
     "nuxt": "^1.0.0-rc8",
-    "prettier": "^1.6.1"
+    "prettier": "^1.6.1",
+    "request-promise-native": "^1.0.4"
   },
   "lint-staged": {
     "*.js": [
@@ -57,7 +63,18 @@
           "useBuiltIns": true
         }
       ]
-    ]
+    ],
+    "env": {
+      "test": {
+        "sourceMaps": "both"
+      }
+    }
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "./coverage/",
+    "mapCoverage": true,
+    "collectCoverage": true
   },
   "eslintConfig": {
     "root": true,
@@ -66,17 +83,20 @@
       "ecmaVersion": 8,
       "sourceType": "module"
     },
+    "env": {
+      "node": true,
+      "es6": true,
+      "jest": true
+    },
     "plugins": [
-      "babel"
+      "babel",
+      "jest"
     ],
     "extends": [
       "eslint-config-i-am-meticulous",
+      "plugin:jest/recommended",
       "eslint-config-prettier"
     ],
-    "env": {
-      "node": true,
-      "es6": true
-    },
     "rules": {
       "import/max-dependencies": [
         2,
@@ -84,6 +104,10 @@
           "max": 20
         }
       ]
+    },
+    "globals": {
+      "jest/globals": true,
+      "jasmine": true
     }
   },
   "prettier": {

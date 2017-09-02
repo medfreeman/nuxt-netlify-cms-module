@@ -1,4 +1,7 @@
 import { join, resolve, relative } from "path";
+
+/* eslint-disable import/no-extraneous-dependencies */
+/* covered by nuxt */
 import _ from "lodash";
 import { Utils } from "nuxt";
 import chokidar from "chokidar";
@@ -94,7 +97,8 @@ export default function NetlifyCmsModule(moduleOptions) {
 
       const netlifyCompiler = webpack(webpackConfig);
 
-      // Only add the compiler in production, in dev watch will be started by dev-middleware
+      // Only add the compiler in production,
+      // in dev watch will be started by dev-middleware
       if (!this.options.dev) {
         compiler.compilers.push(netlifyCompiler);
         compiler[netlifyCompiler.name] = netlifyCompiler;

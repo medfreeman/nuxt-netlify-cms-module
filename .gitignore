@@ -57,5 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# nuxt transient files
+.nuxt
+
 # build dir
 dist/

@@ -11,7 +11,7 @@
     "precommit": "lint-staged",
     "#</git hooks>": "handled by husky",
     "lint": "eslint --ignore-path .gitignore --fix \"**/*.js\"",
-    "test": "cross-env NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test DEBUG=nuxt:netlify-cms jest --runInBand",
     "pretest": "yarn lint -s",
     "build": "babel --ignore /__tests__/ -d ./dist ./src",
     "watch": "babel -w  --ignore /__tests__/ -d ./dist ./src",

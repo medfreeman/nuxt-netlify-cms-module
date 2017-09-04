@@ -79,7 +79,7 @@ adminTitle defines the html title of the page where Netlify CMS will be served.
 
 cmsConfig wholly reflects [Netlify CMS config.yml](#netlify-cms-configyml), in js object format.
 
-:information_source: The order of precedence for the cms configuration is defaults < `netlify-cms.yml` < module options
+:information_source: The order of precedence for the cms configuration is `defaults` < `netlify-cms.yml` < `module options`
 
 :information_source: The paths are also rewritten according to nuxt.js [srcDir](https://nuxtjs.org/api/configuration-srcdir/)
 

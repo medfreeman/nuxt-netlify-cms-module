@@ -11,10 +11,11 @@ import webpackDevMiddleware from "webpack-dev-middleware";
 import serveStatic from "serve-static";
 import Debug from "debug";
 
-import webpackNetlifyConfig from "../lib/webpack.config.js";
 import { loadYAMLFile, toYAML } from "../lib/utils/yaml.js";
 import { setConfigPaths } from "../lib/utils/netlify.config.js";
 import pkg from "../package.json";
+
+import webpackNetlifyConfig from "./webpack.config.js";
 
 const debug = Debug("nuxt:netlify-cms");
 

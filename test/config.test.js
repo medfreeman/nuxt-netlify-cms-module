@@ -1,5 +1,5 @@
 /* eslint-disable import/imports-first */
-jest.mock("../lib/utils/yaml");
+jest.mock("../src/utils/yaml");
 
 import { get, commonBefore, commonAfter } from "./nuxt";
 

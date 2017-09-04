@@ -33,7 +33,7 @@ var netlifyCmsModule = require("nuxt-netlify-cms").default;
 ```
 
 :information_source: Note the `.default` in the above snippet. It is mandatory for this module, written in ES6, to work properly.
-Please read [Misunderstanding ES6 Modules, Upgrading Babel, Tears, and a Solution](https://medium.com/@kentcdodds/misunderstanding-es6-modules-upgrading-babel-tears-and-a-solution-ad2d5ab93ce0) if your're interested to know why.
+Please read [Misunderstanding ES6 Modules, Upgrading Babel, Tears, and a Solution](https://medium.com/@kentcdodds/misunderstanding-es6-modules-upgrading-babel-tears-and-a-solution-ad2d5ab93ce0) if you're interested to know why.
 
 - Add `nuxt-netlify-cms` to `modules` section of `nuxt.config.js`
 

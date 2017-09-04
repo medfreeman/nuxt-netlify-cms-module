@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`module dev mode admin 1`] = `
+"<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=\\"utf-8\\" />
+    <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\" />
+    <title>Content Manager</title>
+  </head>
+  <body>
+  <script type=\\"text/javascript\\" src=\\"/admin/bundle.b3269f80518b70bb145e.js\\"></script></body>
+</html>
+"
+`;

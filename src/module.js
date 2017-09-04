@@ -147,23 +147,18 @@ export default function NetlifyCmsModule(moduleOptions) {
     // Insert webpackDevMiddleware to serve netlify CMS in development
     this.addServerMiddleware({
       path: ADMIN_PATH,
-      handler: async (req, res, next) => {
+      handler: async (req, res) => {
         if (this.nuxt.renderer.netlifyWebpackDevMiddleware) {
           debug(`requesting url: ${Utils.urlJoin(ADMIN_PATH, req.url)}`);
           await this.nuxt.renderer.netlifyWebpackDevMiddleware(req, res);
         }
-        next();
       }
     });
 
     // Stop webpack middleware on nuxt.close()
-    this.nuxt.plugin(
-      "close",
-      () =>
-        new Promise(resolve => {
-          this.nuxt.renderer.netlifyWebpackDevMiddleware.close(() => resolve());
-        })
-    );
+    this.nuxt.plugin("close", async () => {
+      await this.nuxt.renderer.netlifyWebpackDevMiddleware.close();
+    });
 
     // Start watching config file
     const patterns = [Utils.r(NETLIFY_CONFIG_FILE_NAME)];
@@ -185,9 +180,11 @@ export default function NetlifyCmsModule(moduleOptions) {
       .on("change", refreshFiles)
       .on("unlink", refreshFiles);
 
+    this.nuxt.renderer.netlifyFileWatcher = fileWatcher;
+
     // Stop watching on nuxt.close()
     this.nuxt.plugin("close", () => {
-      fileWatcher.close();
+      this.nuxt.renderer.netlifyFileWatcher.close();
     });
   } else {
     // Statically serve netlify CMS (i.e. .nuxt/dist/admin/) files in production

@@ -10,7 +10,7 @@ import ExtractTextPlugin from "extract-text-webpack-plugin";
 export default function webpackNetlifyCmsConfig(name, urlPath, pageTitle) {
   const config = {
     name,
-    entry: resolve(__dirname, "entry.js"),
+    entry: resolve(__dirname, "../lib/entry.js"),
     output: {
       path: resolve(this.options.buildDir, "dist", urlPath),
       filename: "bundle.[chunkhash].js",
@@ -34,7 +34,7 @@ export default function webpackNetlifyCmsConfig(name, urlPath, pageTitle) {
       new HTMLPlugin({
         title: pageTitle,
         filename: "index.html",
-        template: resolve(__dirname, "template", "index.html"),
+        template: resolve(__dirname, "../lib/template", "index.html"),
         inject: true,
         chunksSortMode: "dependency"
       })

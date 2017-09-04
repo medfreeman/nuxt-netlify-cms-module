@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`config netlify-cms.yml 1`] = `
+"backend:
+  name: github
+  repo: me/test
+  branch: master
+media_folder: test/fixture/static/uploads
+collections:
+  - name: pages
+    label: Page
+    folder: test/fixture/content/pages
+    slug: '{{slug}}'
+    create: true
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        tagname: h1
+      - label: Body
+        name: body
+        widget: markdown
+    meta:
+      - label: SEO Description
+        name: description
+        widget: text
+"
+`;

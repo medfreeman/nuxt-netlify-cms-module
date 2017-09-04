@@ -67,6 +67,11 @@ adminPath defines the path where Netlify CMS will be served.
 
 With nuxt default configuration, it will be served to `http://localhost:3000/admin/` in development.
 
+### `adminTitle`
+- Default: `"Content Manager"`
+
+adminTitle defines the html title of the page where Netlify CMS will be served.
+
 ### `cmsConfig`
 - Default: `{
     media_folder: "static/uploads"

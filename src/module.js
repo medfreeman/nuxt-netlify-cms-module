@@ -24,6 +24,7 @@ const WEBPACK_NETLIFY_COMPILER_NAME = "netlify-cms";
 // Defaults
 const DEFAULTS = {
   adminPath: "admin",
+  adminTitle: "Content Manager",
   cmsConfig: {
     media_folder: "static/uploads"
   }
@@ -46,11 +47,12 @@ export default function NetlifyCmsModule(moduleOptions) {
     );
   };
 
-  const getWebpackNetlifyConfig = function(builder, adminPath) {
+  const getWebpackNetlifyConfig = function(builder, adminPath, adminTitle) {
     return webpackNetlifyConfig.call(
       builder,
       WEBPACK_NETLIFY_COMPILER_NAME,
-      adminPath
+      adminPath,
+      adminTitle
     );
   };
 
@@ -74,13 +76,18 @@ export default function NetlifyCmsModule(moduleOptions) {
 
   const options = getOptions();
   const ADMIN_PATH = options.adminPath.replace(/\/?$/, "/");
+  const ADMIN_TITLE = options.adminTitle;
   const DIST_DIR = getDistDir(ADMIN_PATH);
 
   // This will be called once when builder started
   this.nuxt.plugin("build", async builder => {
     // This will be run just before webpack compiler starts
     builder.plugin("compile", ({ builder, compiler }) => {
-      const webpackConfig = getWebpackNetlifyConfig(builder, ADMIN_PATH);
+      const webpackConfig = getWebpackNetlifyConfig(
+        builder,
+        ADMIN_PATH,
+        ADMIN_TITLE
+      );
 
       webpackConfig.plugins.push({
         apply(compiler) {

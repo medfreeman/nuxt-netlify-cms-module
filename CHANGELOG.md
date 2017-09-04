@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v0.1.4...v1.0.0) (2017-09-04)
+
+
+### Features
+
+* **package:** allow end-user to specify `netlify-cms` version ([78bda84](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/78bda84))
+
+
+### BREAKING CHANGES
+
+* **package:** Move `netlify-cms` from dependencies to devDependencies and peerDependencies
+Update readme
+
+
+
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v0.1.3...v0.1.4) (2017-09-04)
 

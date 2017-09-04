@@ -16,7 +16,7 @@
     "build": "babel --ignore /__tests__/ -d ./dist ./src",
     "watch": "babel -w  --ignore /__tests__/ -d ./dist ./src",
     "release": "standard-version; git push --follow-tags",
-    "prepublish": "yarn build -s"
+    "prepare": "yarn build -s"
   },
   "files": [
     "lib",

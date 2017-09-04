@@ -10,7 +10,7 @@
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-> Easy Netlify CMS integration with nuxt.js
+> Easy [Netlify CMS](https://www.netlifycms.org/) integration with nuxt.js
 
 [📖 **Release Notes**](./CHANGELOG.md)
 

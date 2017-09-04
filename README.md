@@ -22,9 +22,9 @@
 - [Meant to be used with nuxtent-module](https://github.com/nuxt-community/nuxtent-module), that allows nuxt to work with static content files
 
 ## Setup
-- Add `nuxt-netlify-cms` devDependency using yarn or npm to your project
+- Add `nuxt-netlify-cms` and `netlify-cms` devDependencies using yarn or npm to your project
 
-  `npm i -D nuxt-netlify-cms` OR `yarn add -D nuxt-netlify-cms`
+  `npm i -D nuxt-netlify-cms netlify-cms` OR `yarn add -D nuxt-netlify-cms netlify-cms`
 
 - Require `nuxt-netlify-cms` at the start of `nuxt.config.js`
 

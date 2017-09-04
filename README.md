@@ -26,16 +26,25 @@
 
   `npm i -D nuxt-netlify-cms` OR `yarn add -D nuxt-netlify-cms`
 
+- Require `nuxt-netlify-cms` at the start of `nuxt.config.js`
+
+```js
+var netlifyCmsModule = require("nuxt-netlify-cms").default;
+```
+
+:information_source: Note the `.default` in the above snippet. It is mandatory for this module, written in ES6, to work properly.
+Please read [Misunderstanding ES6 Modules, Upgrading Babel, Tears, and a Solution](https://medium.com/@kentcdodds/misunderstanding-es6-modules-upgrading-babel-tears-and-a-solution-ad2d5ab93ce0) if your're interested to know why.
+
 - Add `nuxt-netlify-cms` to `modules` section of `nuxt.config.js`
 
 ```js
 {
   modules: [
     // Simple usage
-    "nuxt-netlify-cms",
+    netlifyCmsModule,
 
     // With options
-    ["nuxt-netlify-cms", { adminPath: "secure" }],
+    [netlifyCmsModule, { adminPath: "secure" }],
   ],
 
   // You can optionally use global options instead of inline form

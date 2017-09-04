@@ -1,6 +1,6 @@
 {
   "name": "nuxt-netlify-cms",
-  "description": "Netlify CMS integration with nuxt.js",
+  "description": "Easy Netlify CMS integration with nuxt.js",
   "version": "0.1.3",
   "license": "MIT",
   "main": "dist/module.js",

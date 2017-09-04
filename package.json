@@ -30,7 +30,6 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^7.2.3",
-    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "codecov": "^2.3.0",

@@ -3,3 +3,4 @@ src/
 .nyc_output/
 coverage/
 test/
+__mocks__

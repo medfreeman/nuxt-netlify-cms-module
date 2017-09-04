@@ -15,6 +15,7 @@
     "pretest": "yarn lint -s",
     "build": "babel --ignore /__tests__/ -d ./dist ./src",
     "watch": "babel -w  --ignore /__tests__/ -d ./dist ./src",
+    "release": "standard-version; git push --follow-tags",
     "prepublish": "yarn build -s"
   },
   "files": [
@@ -46,7 +47,8 @@
     "lint-staged": "^4.0.4",
     "nuxt": "^1.0.0-rc8",
     "prettier": "^1.6.1",
-    "request-promise-native": "^1.0.4"
+    "request-promise-native": "^1.0.4",
+    "standard-version": "^4.2.0"
   },
   "lint-staged": {
     "*.js": [

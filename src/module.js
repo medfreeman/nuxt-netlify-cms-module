@@ -26,6 +26,7 @@ const WEBPACK_NETLIFY_COMPILER_NAME = "netlify-cms";
 const DEFAULTS = {
   adminPath: "admin",
   adminTitle: "Content Manager",
+  extensionsDir: "netlify-cms",
   cmsConfig: {
     media_folder: "static/uploads"
   }
@@ -48,12 +49,18 @@ export default function NetlifyCmsModule(moduleOptions) {
     );
   };
 
-  const getWebpackNetlifyConfig = function(builder, adminPath, adminTitle) {
+  const getWebpackNetlifyConfig = function(
+    builder,
+    adminPath,
+    adminTitle,
+    extensionsDir
+  ) {
     return webpackNetlifyConfig.call(
       builder,
       WEBPACK_NETLIFY_COMPILER_NAME,
       adminPath,
-      adminTitle
+      adminTitle,
+      extensionsDir
     );
   };
 
@@ -78,6 +85,7 @@ export default function NetlifyCmsModule(moduleOptions) {
   const options = getOptions();
   const ADMIN_PATH = options.adminPath.replace(/\/?$/, "/");
   const ADMIN_TITLE = options.adminTitle;
+  const EXTENSIONS_DIR = options.extensionsDir;
   const DIST_DIR = getDistDir(ADMIN_PATH);
 
   // This will be called once when builder started
@@ -87,7 +95,8 @@ export default function NetlifyCmsModule(moduleOptions) {
       const webpackConfig = getWebpackNetlifyConfig(
         builder,
         ADMIN_PATH,
-        ADMIN_TITLE
+        ADMIN_TITLE,
+        EXTENSIONS_DIR
       );
 
       webpackConfig.plugins.push({

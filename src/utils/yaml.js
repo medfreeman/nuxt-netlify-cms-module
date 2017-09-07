@@ -1,4 +1,4 @@
-import { readFileSync, existsSync } from "fs";
+import { readFileSync } from "fs";
 
 import { safeLoad, safeDump } from "js-yaml";
 /* eslint-disable import/no-extraneous-dependencies */
@@ -18,20 +18,17 @@ const toYAML = function(object) {
 };
 
 const loadYAMLFile = function(configFile) {
-  if (existsSync(configFile)) {
-    try {
-      const config = readFileSync(configFile, "utf8");
-      const contents = safeLoad(config, {
-        filename: configFile,
-        onWarning: debug
-      });
-      return contents;
-    } catch (e) {
-      debug(e.message, e.name);
-      return false;
-    }
+  try {
+    const config = readFileSync(configFile, "utf8");
+    const contents = safeLoad(config, {
+      filename: configFile,
+      onWarning: debug
+    });
+    return contents;
+  } catch (e) {
+    debug(e.message, e.name);
+    return false;
   }
-  return false;
 };
 
 export { toYAML, loadYAMLFile };

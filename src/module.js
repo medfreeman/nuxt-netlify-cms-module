@@ -1,5 +1,3 @@
-import { join, resolve, relative } from "path";
-
 /* eslint-disable import/no-extraneous-dependencies */
 /* covered by nuxt */
 import _ from "lodash";
@@ -13,97 +11,39 @@ import Debug from "debug";
 
 import pkg from "../package.json";
 
-import { loadYAMLFile, toYAML } from "./utils/yaml.js";
-import { setConfigPaths } from "./utils/netlify.config.js";
-import webpackNetlifyConfig from "./webpack.config.js";
+import ConfigManager from "./configManager";
+import getWebpackNetlifyConfig from "./webpack.config";
+import { toYAML } from "./utils/yaml";
 
 const debug = Debug("nuxt:netlify-cms");
 
 const WEBPACK_CLIENT_COMPILER_NAME = "client";
 const WEBPACK_NETLIFY_COMPILER_NAME = "netlify-cms";
-
-// Defaults
-const DEFAULTS = {
-  adminPath: "admin",
-  adminTitle: "Content Manager",
-  extensionsDir: "netlify-cms",
-  cmsConfig: {
-    media_folder: "static/uploads"
-  }
-};
+const NETLIFY_CONFIG_FILE_NAME = "config.yml";
 
 export default function NetlifyCmsModule(moduleOptions) {
-  const NETLIFY_CONFIG_FILE_NAME = join(
-    this.options.rootDir,
-    "netlify-cms.yml"
-  );
+  const configManager = new ConfigManager(this.options, moduleOptions);
+  const config = configManager.config;
 
-  const getNetlifyCmsConfigFromFile = function() {
-    return loadYAMLFile(NETLIFY_CONFIG_FILE_NAME) || {};
-  };
-
-  const transformNetlifyCmsConfigPaths = config => {
-    return setConfigPaths(
-      config,
-      relative(this.options.rootDir, this.options.srcDir)
-    );
-  };
-
-  const getWebpackNetlifyConfig = function(
-    builder,
-    adminPath,
-    adminTitle,
-    extensionsDir
-  ) {
-    return webpackNetlifyConfig.call(
-      builder,
-      WEBPACK_NETLIFY_COMPILER_NAME,
-      adminPath,
-      adminTitle,
-      extensionsDir
-    );
-  };
-
-  const getDistDir = adminPath => {
-    return resolve(this.options.buildDir, "dist", adminPath);
-  };
-
-  const getOptions = () => {
-    const netlifyCmsConfig = getNetlifyCmsConfigFromFile();
-    const options = {
-      ...DEFAULTS,
-      cmsConfig: {
-        ...netlifyCmsConfig
-      },
-      ...this.options.netlifyCms,
-      ...moduleOptions
-    };
-    options.cmsConfig = transformNetlifyCmsConfigPaths(options.cmsConfig);
-    return options;
-  };
-
-  const options = getOptions();
-  const ADMIN_PATH = options.adminPath.replace(/\/?$/, "/");
-  const ADMIN_TITLE = options.adminTitle;
-  const EXTENSIONS_DIR = options.extensionsDir;
-  const DIST_DIR = getDistDir(ADMIN_PATH);
+  const ADMIN_PATH = config.adminPath;
+  const EXTENSIONS_DIR = config.extensionsDir;
+  const BUILD_DIR = config.buildDir;
 
   // This will be called once when builder started
   this.nuxt.plugin("build", async builder => {
     // This will be run just before webpack compiler starts
     builder.plugin("compile", ({ builder, compiler }) => {
       const webpackConfig = getWebpackNetlifyConfig(
-        builder,
-        ADMIN_PATH,
-        ADMIN_TITLE,
-        EXTENSIONS_DIR
+        WEBPACK_NETLIFY_COMPILER_NAME,
+        this.options,
+        config
       );
 
       webpackConfig.plugins.push({
         apply(compiler) {
           compiler.plugin("emit", (compilation, cb) => {
-            const netlifyConfigYAML = toYAML(getOptions().cmsConfig);
-            compilation.assets["config.yml"] = {
+            const netlifyConfigYAML = toYAML(configManager.cmsConfig);
+            compilation.assets[NETLIFY_CONFIG_FILE_NAME] = {
               source: () => netlifyConfigYAML,
               size: () => netlifyConfigYAML.length
             };
@@ -178,7 +118,10 @@ export default function NetlifyCmsModule(moduleOptions) {
     });
 
     // Start watching config file
-    const patterns = [Utils.r(NETLIFY_CONFIG_FILE_NAME)];
+    const patterns = [
+      Utils.r(NETLIFY_CONFIG_FILE_NAME),
+      Utils.r(EXTENSIONS_DIR)
+    ];
 
     const options = {
       ...this.options.watchers.chokidar,
@@ -207,7 +150,7 @@ export default function NetlifyCmsModule(moduleOptions) {
     // Statically serve netlify CMS (i.e. .nuxt/dist/admin/) files in production
     this.addServerMiddleware({
       path: ADMIN_PATH,
-      handler: serveStatic(DIST_DIR, {
+      handler: serveStatic(BUILD_DIR, {
         maxAge: "1y" // 1 year in production
       })
     });

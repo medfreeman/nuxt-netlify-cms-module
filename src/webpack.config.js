@@ -1,5 +1,5 @@
 import { existsSync } from "fs";
-import { join, resolve } from "path";
+import { resolve } from "path";
 
 import { Utils } from "nuxt";
 /* eslint-disable import/no-extraneous-dependencies */
@@ -10,19 +10,29 @@ import ExtractTextPlugin from "extract-text-webpack-plugin";
 
 export default function webpackNetlifyCmsConfig(
   name,
-  urlPath,
-  pageTitle,
-  extensionsDir
+  nuxtOptions,
+  moduleConfig
 ) {
-  const EXTENSIONS_DIR = join(this.options.srcDir, extensionsDir);
+  const ENTRY = resolve(__dirname, "../lib/entry.js");
+  const BUILD_DIR = moduleConfig.buildDir;
+  const CHUNK_FILENAME = nuxtOptions.build.filenames.chunk;
+  const PUBLIC_PATH = Utils.urlJoin(
+    nuxtOptions.router.base,
+    moduleConfig.adminPath
+  );
+  const EXTENSIONS_DIR = moduleConfig.extensionsDir;
+  const PAGE_TITLE = moduleConfig.adminTitle;
+  const PAGE_TEMPLATE = resolve(__dirname, "../lib/template", "index.html");
+  const REQUIRE_EXTENSIONS = existsSync(EXTENSIONS_DIR) ? true : false;
+
   const config = {
     name,
-    entry: resolve(__dirname, "../lib/entry.js"),
+    entry: ENTRY,
     output: {
-      path: resolve(this.options.buildDir, "dist", urlPath),
+      path: BUILD_DIR,
       filename: "bundle.[chunkhash].js",
-      chunkFilename: this.options.build.filenames.chunk,
-      publicPath: Utils.urlJoin(this.options.router.base, urlPath)
+      chunkFilename: CHUNK_FILENAME,
+      publicPath: PUBLIC_PATH
     },
     module: {
       loaders: [
@@ -44,14 +54,14 @@ export default function webpackNetlifyCmsConfig(
     },
     plugins: [
       new HTMLPlugin({
-        title: pageTitle,
+        title: PAGE_TITLE,
         filename: "index.html",
-        template: resolve(__dirname, "../lib/template", "index.html"),
+        template: PAGE_TEMPLATE,
         inject: true,
         chunksSortMode: "dependency"
       }),
       new webpack.DefinePlugin({
-        REQUIRE_EXTENSIONS: existsSync(EXTENSIONS_DIR) ? true : false
+        REQUIRE_EXTENSIONS
       })
     ]
   };
@@ -59,7 +69,7 @@ export default function webpackNetlifyCmsConfig(
   // --------------------------------------
   // Production specific config
   // --------------------------------------
-  if (!this.options.dev) {
+  if (!nuxtOptions.dev) {
     // CSS extraction
     config.plugins.push(
       new ExtractTextPlugin({

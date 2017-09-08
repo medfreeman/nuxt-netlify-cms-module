@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v1.0.0...v1.1.0) (2017-09-08)
+
+
+### Bug Fixes
+
+* **core:** avoid calling file existsSync before reading ([312c14b](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/312c14b))
+
+
+### Features
+
+* **core:** add support for netlify-cms extensions ([f670cf3](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/f670cf3))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v0.1.4...v1.0.0) (2017-09-04)
 

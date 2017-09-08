@@ -119,7 +119,7 @@ export default function NetlifyCmsModule(moduleOptions) {
 
     // Start watching config file
     const patterns = [
-      Utils.r(NETLIFY_CONFIG_FILE_NAME),
+      Utils.r(configManager.cmsConfigFile.fileName),
       Utils.r(EXTENSIONS_DIR)
     ];
 
@@ -128,10 +128,10 @@ export default function NetlifyCmsModule(moduleOptions) {
       ignoreInitial: true
     };
 
-    const refreshFiles = _.debounce(
-      () => this.nuxt.renderer.netlifyWebpackDevMiddleware.invalidate(),
-      200
-    );
+    const refreshFiles = _.debounce(() => {
+      configManager.cmsConfigFile.readFile();
+      this.nuxt.renderer.netlifyWebpackDevMiddleware.invalidate();
+    }, 200);
 
     // Watch for src Files
     const fileWatcher = chokidar

@@ -44,6 +44,10 @@ class ConfigManager {
     this._config = options;
   }
 
+  get cmsConfigFile() {
+    return this._cmsConfigFile;
+  }
+
   get config() {
     return this._config;
   }

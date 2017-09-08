@@ -16,6 +16,10 @@ class CmsConfig {
   get config() {
     return this._config;
   }
+
+  get fileName() {
+    return this._fileName;
+  }
 }
 
 export default CmsConfig;

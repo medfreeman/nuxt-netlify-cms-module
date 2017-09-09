@@ -14,7 +14,7 @@ export default function webpackNetlifyCmsConfig(
   nuxtOptions,
   moduleConfig
 ) {
-  const ENTRY = resolve(__dirname, "../lib/entry.js");
+  const ENTRY = resolve(__dirname, "../lib/entry");
   const BUILD_DIR = moduleConfig.buildDir;
   const CHUNK_FILENAME = nuxtOptions.build.filenames.chunk;
   const PUBLIC_PATH = Utils.urlJoin(
@@ -25,13 +25,16 @@ export default function webpackNetlifyCmsConfig(
   const PAGE_TITLE = moduleConfig.adminTitle;
   const PAGE_TEMPLATE = resolve(__dirname, "../lib/template", "index.html");
   const REQUIRE_EXTENSIONS = existsSync(EXTENSIONS_DIR) ? true : false;
+  const HMR_CLIENT = resolve(__dirname, "../lib/hmr.client");
 
   const config = {
     name,
-    entry: ENTRY,
+    entry: {
+      app: ENTRY
+    },
     output: {
       path: BUILD_DIR,
-      filename: "bundle.[chunkhash].js",
+      filename: "bundle.[hash].js",
       chunkFilename: CHUNK_FILENAME,
       publicPath: PUBLIC_PATH
     },
@@ -71,7 +74,18 @@ export default function webpackNetlifyCmsConfig(
   // Development specific config
   // --------------------------------------
   if (nuxtOptions.dev) {
+    // Add friendly error plugin
     config.plugins.push(new FriendlyErrorsWebpackPlugin());
+
+    // https://webpack.js.org/plugins/named-modules-plugin
+    config.plugins.push(new webpack.NamedModulesPlugin());
+
+    // Add HMR support
+    config.entry.app = [HMR_CLIENT, config.entry.app];
+    config.plugins.push(
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoEmitOnErrorsPlugin()
+    );
   } else {
     // --------------------------------------
     // Production specific config

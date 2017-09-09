@@ -64,7 +64,7 @@ You have to place the file in your [project root](https://nuxtjs.org/api/configu
 
 :information_source: Note that each path in the file (`media_folder` and collections `folder` fields) will be rewritten to prepend nuxt.js [srcDir](https://nuxtjs.org/api/configuration-srcdir/), so please specify each path relative to this folder.
 
-This file can be changed while `nuxt dev` is running, and Netlify CMS will be updated automatically. At the moment, you'll have to refresh your browser window manually after the build is complete.
+This file can be changed while `nuxt dev` is running, and Netlify CMS will be updated automatically.
 
 ## Options
 You can pass options using module options or `netlifyCms` section in `nuxt.config.js`.
@@ -103,7 +103,7 @@ These are of two kinds, [Custom Previews](https://www.netlifycms.org/docs/custom
 
 :information_source: The global variable `CMS` is available to these javascript files to reference the CMS object.
 
-This directory can be changed while `nuxt dev` is running, and Netlify CMS will be updated automatically. At the moment, you'll have to refresh your browser window manually after the build is complete.
+This directory can be changed while `nuxt dev` is running, and Netlify CMS will be updated automatically.
 
 ## CONTRIBUTING
 

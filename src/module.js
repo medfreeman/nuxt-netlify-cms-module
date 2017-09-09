@@ -6,6 +6,7 @@ import chokidar from "chokidar";
 import pify from "pify";
 import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
+import webpackHotMiddleware from "webpack-hot-middleware";
 import serveStatic from "serve-static";
 import Debug from "debug";
 
@@ -86,10 +87,23 @@ export default function NetlifyCmsModule(moduleOptions) {
           })
         );
 
+        const netlifyWebpackHotMiddleware = pify(
+          webpackHotMiddleware(netlifyCompiler, {
+            log: false,
+            heartbeat: 1000
+          })
+        );
+
         // Inject to renderer instance
         if (builder.nuxt.renderer) {
           builder.nuxt.renderer.netlifyWebpackDevMiddleware = netlifyWebpackDevMiddleware;
+          builder.nuxt.renderer.netlifyWebpackHotMiddleware = netlifyWebpackHotMiddleware;
         }
+
+        // Stop webpack middleware on nuxt.close()
+        this.nuxt.plugin("close", async () => {
+          await this.nuxt.renderer.netlifyWebpackDevMiddleware.close();
+        });
       }
     });
 
@@ -109,12 +123,10 @@ export default function NetlifyCmsModule(moduleOptions) {
           debug(`requesting url: ${Utils.urlJoin(ADMIN_PATH, req.url)}`);
           await this.nuxt.renderer.netlifyWebpackDevMiddleware(req, res);
         }
+        if (this.nuxt.renderer.netlifyWebpackHotMiddleware) {
+          await this.nuxt.renderer.netlifyWebpackHotMiddleware(req, res);
+        }
       }
-    });
-
-    // Stop webpack middleware on nuxt.close()
-    this.nuxt.plugin("close", async () => {
-      await this.nuxt.renderer.netlifyWebpackDevMiddleware.close();
     });
 
     // Start watching config file
@@ -128,6 +140,9 @@ export default function NetlifyCmsModule(moduleOptions) {
     const refreshFiles = _.debounce(() => {
       configManager.cmsConfigFile.readFile();
       this.nuxt.renderer.netlifyWebpackDevMiddleware.invalidate();
+      this.nuxt.renderer.netlifyWebpackHotMiddleware.publish({
+        action: "reload"
+      });
     }, 200);
 
     // Watch for src Files

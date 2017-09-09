@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v1.1.0...v1.2.0) (2017-09-09)
+
+
+### Bug Fixes
+
+* **build:** fix various rebuild errors ([229a257](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/229a257)), closes [#7](https://github.com/medfreeman/nuxt-netlify-cms-module/issues/7) [#9](https://github.com/medfreeman/nuxt-netlify-cms-module/issues/9) [#10](https://github.com/medfreeman/nuxt-netlify-cms-module/issues/10)
+* **package:** remove duplicate `lodash.omit` dependency ([d5e1017](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/d5e1017))
+
+
+### Features
+
+* **build:** add a notification of bundle rebuilding and completion ([6c51d10](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/6c51d10)), closes [#11](https://github.com/medfreeman/nuxt-netlify-cms-module/issues/11)
+* **build:** add webpack hot reloading ([05748d7](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/05748d7)), closes [#15](https://github.com/medfreeman/nuxt-netlify-cms-module/issues/15)
+* **build:** show pretty build status ([c4107f2](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/c4107f2))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v1.0.0...v1.1.0) (2017-09-08)
 

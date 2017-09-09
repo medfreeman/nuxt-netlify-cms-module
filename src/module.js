@@ -26,7 +26,6 @@ export default function NetlifyCmsModule(moduleOptions) {
   const config = configManager.config;
 
   const ADMIN_PATH = config.adminPath;
-  const EXTENSIONS_DIR = config.extensionsDir;
   const BUILD_DIR = config.buildDir;
 
   // This will be called once when builder started
@@ -119,10 +118,7 @@ export default function NetlifyCmsModule(moduleOptions) {
     });
 
     // Start watching config file
-    const patterns = [
-      Utils.r(configManager.cmsConfigFile.fileName),
-      Utils.r(EXTENSIONS_DIR)
-    ];
+    const patterns = [Utils.r(configManager.cmsConfigFile.fileName)];
 
     const options = {
       ...this.options.watchers.chokidar,
@@ -131,7 +127,6 @@ export default function NetlifyCmsModule(moduleOptions) {
 
     const refreshFiles = _.debounce(() => {
       configManager.cmsConfigFile.readFile();
-      debug(`Rebuilding...`);
       this.nuxt.renderer.netlifyWebpackDevMiddleware.invalidate();
     }, 200);
 

@@ -72,6 +72,7 @@ export default function NetlifyCmsModule(moduleOptions) {
         if (stats.hasErrors()) {
           return;
         }
+        debug(`Bundle built!`);
       });
 
       // Create webpack dev middleware in development
@@ -130,6 +131,7 @@ export default function NetlifyCmsModule(moduleOptions) {
 
     const refreshFiles = _.debounce(() => {
       configManager.cmsConfigFile.readFile();
+      debug(`Rebuilding...`);
       this.nuxt.renderer.netlifyWebpackDevMiddleware.invalidate();
     }, 200);
 

@@ -74,30 +74,28 @@ export default function webpackNetlifyCmsConfig(
   // Development specific config
   // --------------------------------------
   if (nuxtOptions.dev) {
-    // Add friendly error plugin
-    config.plugins.push(new FriendlyErrorsWebpackPlugin());
-
-    // https://webpack.js.org/plugins/named-modules-plugin
-    config.plugins.push(new webpack.NamedModulesPlugin());
-
     // Add HMR support
     config.entry.app = [HMR_CLIENT, config.entry.app];
+
     config.plugins.push(
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin()
+      new webpack.NoEmitOnErrorsPlugin(),
+      // Add friendly error plugin
+      new FriendlyErrorsWebpackPlugin(),
+      // https://webpack.js.org/plugins/named-modules-plugin
+      new webpack.NamedModulesPlugin()
     );
   } else {
     // --------------------------------------
     // Production specific config
     // --------------------------------------
-    // CSS extraction
+    // Minify and optimize the JavaScript
     config.plugins.push(
+      // CSS extraction
       new ExtractTextPlugin({
         filename: "style.[contenthash].css"
-      })
-    );
-    // This is needed in webpack 2 for minify CSS
-    config.plugins.push(
+      }),
+      // This is needed in webpack 2 for minify CSS
       new webpack.LoaderOptionsPlugin({
         minimize: true
       })

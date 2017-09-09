@@ -26,7 +26,9 @@ const loadYAMLFile = function(configFile) {
     });
     return contents;
   } catch (e) {
-    debug(e.message, e.name);
+    if (e.code !== "ENOENT") {
+      debug(e.message, e.name);
+    }
     return false;
   }
 };

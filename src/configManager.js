@@ -1,6 +1,8 @@
 import { join, relative } from "path";
 
-import omit from "lodash.omit";
+/* eslint-disable import/no-extraneous-dependencies */
+/* covered by nuxt */
+import _ from "lodash";
 
 import CmsConfigFile from "./utils/cms.config.file";
 
@@ -31,7 +33,7 @@ class ConfigManager {
       ...moduleOptions
     };
 
-    const options = omit(
+    const options = _.omit(
       {
         ...DEFAULTS,
         ...this._userOptions

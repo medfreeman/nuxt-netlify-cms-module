@@ -12,11 +12,11 @@
     "#</git hooks>": "handled by husky",
     "lint": "eslint --ignore-path .gitignore --fix \"**/*.js\"",
     "test": "cross-env NODE_ENV=test DEBUG=nuxt:netlify-cms jest --runInBand --forceExit",
-    "pretest": "yarn lint -s",
+    "pretest": "yarn lint",
     "build": "babel --ignore /__tests__/,/__mocks__/ -d ./dist ./src",
     "watch": "babel -w  --ignore /__tests__/,/__mocks__/ -d ./dist ./src",
     "release": "standard-version; git push --follow-tags",
-    "prepare": "yarn build -s"
+    "prepare": "yarn build"
   },
   "files": [
     "lib",

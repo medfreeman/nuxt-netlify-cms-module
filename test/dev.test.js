@@ -12,6 +12,6 @@ describe("module dev mode", () => {
 
   test("admin", async () => {
     const html = await get("/admin/");
-    expect(html).toMatchSnapshot();
+    expect(html).toMatch(/.*<script[\s\S]*?>[\s\S]*?<\/script><\/body>/);
   });
 });

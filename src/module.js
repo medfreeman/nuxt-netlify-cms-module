@@ -75,8 +75,14 @@ export default function NetlifyCmsModule(moduleOptions) {
         debug(`Bundle built!`);
       });
 
-      // Create webpack dev middleware in development
+      // in development
       if (this.options.dev) {
+        // Show a message inside console when the build is ready
+        builder.plugin("compiled", async () => {
+          debug(`Serving on: ${ADMIN_PATH}`);
+        });
+
+        // Create webpack dev middleware
         const netlifyWebpackDevMiddleware = pify(
           webpackDevMiddleware(netlifyCompiler, {
             publicPath: "/",
@@ -87,6 +93,7 @@ export default function NetlifyCmsModule(moduleOptions) {
           })
         );
 
+        // Create webpack hot middleware
         const netlifyWebpackHotMiddleware = pify(
           webpackHotMiddleware(netlifyCompiler, {
             log: false,
@@ -105,11 +112,6 @@ export default function NetlifyCmsModule(moduleOptions) {
           await this.nuxt.renderer.netlifyWebpackDevMiddleware.close();
         });
       }
-    });
-
-    // Show a message inside console when the build is ready
-    builder.plugin("compiled", async () => {
-      debug(`Serving on: ${ADMIN_PATH}`);
     });
   });
 

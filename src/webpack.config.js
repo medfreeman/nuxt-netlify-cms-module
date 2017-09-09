@@ -7,6 +7,7 @@ import { Utils } from "nuxt";
 import webpack from "webpack";
 import HTMLPlugin from "html-webpack-plugin";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
+import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
 
 export default function webpackNetlifyCmsConfig(
   name,
@@ -67,9 +68,14 @@ export default function webpackNetlifyCmsConfig(
   };
 
   // --------------------------------------
-  // Production specific config
+  // Development specific config
   // --------------------------------------
-  if (!nuxtOptions.dev) {
+  if (nuxtOptions.dev) {
+    config.plugins.push(new FriendlyErrorsWebpackPlugin());
+  } else {
+    // --------------------------------------
+    // Production specific config
+    // --------------------------------------
     // CSS extraction
     config.plugins.push(
       new ExtractTextPlugin({

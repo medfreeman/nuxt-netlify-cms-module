@@ -75,11 +75,25 @@ class ConfigManager {
 
     if (configObject.collections) {
       configObject.collections.forEach(function(collection) {
-        collection.folder &&
+        if (collection.folder) {
           newConfig.collections.push({
             ...collection,
             folder: join(enforcedPath, collection.folder)
           });
+        } else if (collection.files) {
+          const collectionFiles = [];
+          collection.files.forEach(function(fileEntry) {
+            fileEntry.file &&
+              collectionFiles.push({
+                ...fileEntry,
+                file: join(enforcedPath, fileEntry.file)
+              });
+          });
+          newConfig.collections.push({
+            ...collection,
+            files: collectionFiles
+          });
+        }
       });
     }
 

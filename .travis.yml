@@ -13,10 +13,17 @@ addons:
     - g++-4.8
 matrix:
   fast_finish: true
-cache: yarn
+cache:
+  directories:
+    - $HOME/.npm
+    - $HOME/.cache/yarn
+    - node_modules
 before_install:
+- npm i -g yarn --cache-min 999999999
 - yarn config set no-progress
 - yarn global add greenkeeper-lockfile@1
+install:
+  - yarn
 before_script: greenkeeper-lockfile-update
 script: yarn test && yarn codecov
 after_script: greenkeeper-lockfile-upload

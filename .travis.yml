@@ -9,9 +9,8 @@ cache:
     - $HOME/.cache/yarn
     - node_modules
 before_install:
-- npm i -g yarn --cache-min 999999999
-- yarn config set no-progress
-- yarn global add greenkeeper-lockfile@1
+  - yarn config set no-progress
+  - yarn global add greenkeeper-lockfile@1
 install:
   - yarn
 before_script: greenkeeper-lockfile-update

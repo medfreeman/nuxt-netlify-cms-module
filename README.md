@@ -47,15 +47,33 @@
 
 ## Usage
 
-### Netlify CMS `config.yml`
+### Netlify CMS module config folder
+
+This module will look for the Netlify CMS config file and extensions in the following folder: `[nuxt.js srcDir]/netlify-cms`.
+
+:information_source: The nuxt.js [srcDir](https://nuxtjs.org/api/configuration-srcdir/) is set to the project root folder by default. If you don't change this value in nuxt config, you'll just have to create the "netlify-cms" directory at your project root folder.
+
+:information_source: If you don't use any of the following two features, there's no need to create this folder.
+
+#### Netlify CMS `config.yml`
 
 You can specify a [custom configuration](https://www.netlifycms.org/docs/#configuration), that will be parsed and merged with the module's [netlify CMS options](#cmsconfig).
 
-You have to place the file in your [project root](https://nuxtjs.org/api/configuration-rootdir/) and name it `netlify-cms.yml` instead of `config.yml`, for clarity.
+You have to place the file in your Netlify CMS module config folder and name it `config.yml`.
 
-:information_source: Note that each path in the file (`media_folder` and collections `folder` fields) will be rewritten to prepend nuxt.js [srcDir](https://nuxtjs.org/api/configuration-srcdir/), so please specify each path relative to this folder.
+:information_source: Note that each path in the file (`media_folder`, collections `folder` fields and collections `file` fields) will be rewritten to prepend nuxt.js [srcDir](https://nuxtjs.org/api/configuration-srcdir/), so please specify each path relative to this folder.
 
 This file can be changed while `nuxt dev` is running, and Netlify CMS will be updated automatically.
+
+#### Netlify CMS extensions
+
+This module will look for [Netlify CMS extensions](https://github.com/netlify/netlify-cms/blob/master/docs/intro.md#customization) in \*.js files contained in Netlify CMS module config folder and subfolders, and include them in the CMS build.
+
+These are of two kinds, [Custom Previews](https://www.netlifycms.org/docs/customization/) and [Widgets](https://www.netlifycms.org/docs/extending/).
+
+:information_source: The global variable `CMS` is available to these javascript files to reference the CMS object.
+
+:information_source: The contents of this directory and subdirectories can be changed while `nuxt dev` is running, and Netlify CMS will be updated automatically.
 
 ## Options
 You can pass options using module options or `netlifyCms` section in `nuxt.config.js`.
@@ -82,19 +100,6 @@ cmsConfig wholly reflects [Netlify CMS config.yml](#netlify-cms-configyml), in j
 :information_source: The order of precedence for the cms configuration is `defaults` < `netlify-cms.yml` < `module options`
 
 :information_source: The paths are also rewritten according to nuxt.js [srcDir](https://nuxtjs.org/api/configuration-srcdir/)
-
-### `extensionsDir`: 
-- Default: `"netlify-cms"`
-
-extensionsDir defines the directory where this module will look for [Netlify CMS extensions](https://github.com/netlify/netlify-cms/blob/master/docs/intro.md#customization) in *.js files to include in the build.
-
-These are of two kinds, [Custom Previews](https://www.netlifycms.org/docs/customization/) and [Widgets](https://www.netlifycms.org/docs/extending/).
-
-:information_source: This path will be rewritten to prepend nuxt.js [srcDir](https://nuxtjs.org/api/configuration-srcdir/), so please specify it relative to this folder.
-
-:information_source: The global variable `CMS` is available to these javascript files to reference the CMS object.
-
-This directory can be changed while `nuxt dev` is running, and Netlify CMS will be updated automatically.
 
 ## CONTRIBUTING
 

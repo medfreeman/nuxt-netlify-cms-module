@@ -21,7 +21,7 @@ export default function webpackNetlifyCmsConfig(
     nuxtOptions.router.base,
     moduleConfig.adminPath
   );
-  const EXTENSIONS_DIR = moduleConfig.extensionsDir;
+  const EXTENSIONS_DIR = moduleConfig.moduleConfigDir;
   const PAGE_TITLE = moduleConfig.adminTitle;
   const PAGE_TEMPLATE = resolve(__dirname, "../lib/template", "index.html");
   const REQUIRE_EXTENSIONS = existsSync(EXTENSIONS_DIR) ? true : false;

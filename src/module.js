@@ -26,9 +26,6 @@ export default function NetlifyCmsModule(moduleOptions) {
   const configManager = new ConfigManager(this.options, moduleOptions);
   const config = configManager.config;
 
-  const ADMIN_PATH = config.adminPath;
-  const BUILD_DIR = config.buildDir;
-
   // This will be called once when builder started
   this.nuxt.plugin("build", async builder => {
     // This will be run just before webpack compiler starts
@@ -79,7 +76,7 @@ export default function NetlifyCmsModule(moduleOptions) {
       if (this.options.dev) {
         // Show a message inside console when the build is ready
         builder.plugin("compiled", async () => {
-          debug(`Serving on: ${ADMIN_PATH}`);
+          debug(`Serving on: ${config.adminPath}`);
         });
 
         // Create webpack dev middleware
@@ -119,10 +116,10 @@ export default function NetlifyCmsModule(moduleOptions) {
   if (this.options.dev) {
     // Insert webpackDevMiddleware to serve netlify CMS in development
     this.addServerMiddleware({
-      path: ADMIN_PATH,
+      path: config.adminPath,
       handler: async (req, res) => {
         if (this.nuxt.renderer.netlifyWebpackDevMiddleware) {
-          debug(`requesting url: ${Utils.urlJoin(ADMIN_PATH, req.url)}`);
+          debug(`requesting url: ${Utils.urlJoin(config.adminPath, req.url)}`);
           await this.nuxt.renderer.netlifyWebpackDevMiddleware(req, res);
         }
         if (this.nuxt.renderer.netlifyWebpackHotMiddleware) {
@@ -163,8 +160,8 @@ export default function NetlifyCmsModule(moduleOptions) {
   } else {
     // Statically serve netlify CMS (i.e. .nuxt/dist/admin/) files in production
     this.addServerMiddleware({
-      path: ADMIN_PATH,
-      handler: serveStatic(BUILD_DIR, {
+      path: config.adminPath,
+      handler: serveStatic(config.buildDir, {
         maxAge: "1y" // 1 year in production
       })
     });

@@ -43,7 +43,7 @@ class ConfigManager {
     options.adminPath = options.adminPath.replace(/\/?$/, "/");
     options.extensionsDir = join(nuxtOptions.srcDir, options.extensionsDir);
     options.buildDir = join(nuxtOptions.buildDir, "dist", options.adminPath);
-    this._config = options;
+    this._config = Object.freeze(options);
   }
 
   get config() {

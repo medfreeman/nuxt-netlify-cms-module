@@ -7,14 +7,15 @@ import _ from "lodash";
 import CmsConfigFile from "./utils/cms.config.file";
 
 const NUXT_CONFIG_KEY = "netlifyCms";
+const NUXT_DIST_DIR = "dist";
 const CMS_CONFIG_KEY = "cmsConfig";
-const CMS_CONFIG_FILENAME = "netlify-cms.yml";
+const CMS_CONFIG_DIR = "netlify-cms";
+const CMS_CONFIG_FILENAME = "config.yml";
 
 // Defaults
 const DEFAULTS = {
   adminPath: "admin",
   adminTitle: "Content Manager",
-  extensionsDir: "netlify-cms",
   cmsConfig: {
     media_folder: "static/uploads"
   }
@@ -22,10 +23,6 @@ const DEFAULTS = {
 
 class ConfigManager {
   constructor(nuxtOptions, moduleOptions) {
-    this._cmsConfigFile = new CmsConfigFile(
-      join(nuxtOptions.rootDir, CMS_CONFIG_FILENAME)
-    );
-
     this._relativeSrcDir = relative(nuxtOptions.rootDir, nuxtOptions.srcDir);
 
     this._userOptions = {
@@ -41,9 +38,17 @@ class ConfigManager {
       CMS_CONFIG_KEY
     );
     options.adminPath = options.adminPath.replace(/\/?$/, "/");
-    options.extensionsDir = join(nuxtOptions.srcDir, options.extensionsDir);
-    options.buildDir = join(nuxtOptions.buildDir, "dist", options.adminPath);
+    options.buildDir = join(
+      nuxtOptions.buildDir,
+      NUXT_DIST_DIR,
+      options.adminPath
+    );
+    options.moduleConfigDir = join(nuxtOptions.srcDir, CMS_CONFIG_DIR);
     this._config = Object.freeze(options);
+
+    this._cmsConfigFile = new CmsConfigFile(
+      join(this._config.moduleConfigDir, CMS_CONFIG_FILENAME)
+    );
   }
 
   get config() {

@@ -46,10 +46,6 @@ class ConfigManager {
     this._config = options;
   }
 
-  get cmsConfigFile() {
-    return this._cmsConfigFile;
-  }
-
   get config() {
     return this._config;
   }
@@ -64,6 +60,14 @@ class ConfigManager {
       this._relativeSrcDir
     );
     return config;
+  }
+
+  get cmsConfigFileName() {
+    return this._cmsConfigFile.fileName;
+  }
+
+  readCmsConfigFile() {
+    return this._cmsConfigFile.readFile();
   }
 
   static setConfigPaths(configObject, enforcedPath) {

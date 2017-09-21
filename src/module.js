@@ -132,7 +132,7 @@ export default function NetlifyCmsModule(moduleOptions) {
     });
 
     // Start watching config file
-    const patterns = [Utils.r(configManager.cmsConfigFile.fileName)];
+    const patterns = [Utils.r(configManager.cmsConfigFileName)];
 
     const options = {
       ...this.options.watchers.chokidar,
@@ -140,7 +140,7 @@ export default function NetlifyCmsModule(moduleOptions) {
     };
 
     const refreshFiles = _.debounce(() => {
-      configManager.cmsConfigFile.readFile();
+      configManager.readCmsConfigFile();
       this.nuxt.renderer.netlifyWebpackDevMiddleware.invalidate();
       this.nuxt.renderer.netlifyWebpackHotMiddleware.publish({
         action: "reload"

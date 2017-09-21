@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v1.2.1...v2.0.0) (2017-09-21)
+
+
+### Bug Fixes
+
+* **package:** eslint compliance on commonjs index ([55a8f07](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/55a8f07))
+
+
+### Chores
+
+* **package:** re-export module in commonjs format ([1bba36c](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/1bba36c)), closes [#19](https://github.com/medfreeman/nuxt-netlify-cms-module/issues/19)
+
+
+### Features
+
+* **config:** enforce a single `netlify-cms` folder ([3fcbc2c](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/3fcbc2c)), closes [#21](https://github.com/medfreeman/nuxt-netlify-cms-module/issues/21)
+
+
+### BREAKING CHANGES
+
+* **config:** the cms config file should be placed in the "netlify-cms" folder and named "config.yml" along with the extensions js files
+* **config:** remove `extensionsDir` option
+* **package:** remove having to use `.default` while requiring this module
+
+
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v1.2.0...v1.2.1) (2017-09-18)
 

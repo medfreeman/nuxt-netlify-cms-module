@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v2.0.0...v2.0.1) (2017-09-22)
+
+
+### Bug Fixes
+
+* **module:** properly move the CMS build to the `dist` folder on `nuxt generate` ([dd4b970](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/dd4b970)), closes [#23](https://github.com/medfreeman/nuxt-netlify-cms-module/issues/23)
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v1.2.1...v2.0.0) (2017-09-21)
 

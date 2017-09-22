@@ -59,6 +59,7 @@ typings/
 
 # nuxt transient files
 .nuxt
+.dist
 
 # build dir
 dist/

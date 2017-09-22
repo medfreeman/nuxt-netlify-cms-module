@@ -30,7 +30,7 @@ export default function NetlifyCmsModule(moduleOptions) {
   const config = configManager.config;
 
   // This will be called once when builder started
-  this.nuxt.plugin("build", async builder => {
+  this.nuxt.plugin("build", builder => {
     // This will be run just before webpack compiler starts
     builder.plugin("compile", ({ builder, compiler }) => {
       const webpackConfig = getWebpackNetlifyConfig(

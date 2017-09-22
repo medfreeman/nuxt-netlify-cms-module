@@ -1,5 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import { join } from "path";
+
 /* covered by nuxt */
+import { move } from "fs-extra";
 import _ from "lodash";
 import { Utils } from "nuxt";
 import chokidar from "chokidar";
@@ -166,6 +169,17 @@ export default function NetlifyCmsModule(moduleOptions) {
       })
     });
   }
+
+  // Move cms folder from `dist/_nuxt` folder to `dist/` after nuxt generate
+  this.nuxt.plugin("generator", generator => {
+    generator.plugin("generate", async () => {
+      await move(
+        join(generator.distNuxtPath, config.adminPath).replace(/\/$/, ""),
+        join(generator.distPath, config.adminPath).replace(/\/$/, "")
+      );
+      debug("Netlify CMS files copied");
+    });
+  });
 }
 
 // REQUIRED if publishing as an NPM package

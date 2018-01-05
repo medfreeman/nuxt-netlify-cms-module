@@ -1,0 +1,20 @@
+backend:
+  name: github
+  repo: username/repo # Change to your repo
+  # url: http://localhost:3000
+
+media_folder: "static/uploads"
+
+collections: # A list of collections the CMS should be able to edit
+  - name: "posts" # Used in routes, ie.: /admin/collections/:slug/edit
+    label: "Post" # Used in the UI, ie.: "New Post"
+    folder: "content/posts"
+    slug: "{{year}}-{{slug}}"
+    create: true # Allow users to create new documents in this collection
+    fields: # The fields each document in this collection have
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mma"}
+      - {label: "Cover Image", name: "image", widget: "image", required: false, tagname: ""}
+      - {label: "Body", name: "body", widget: "markdown"}
+    meta:
+      - {label: "SEO Description", name: "description", widget: "text"}

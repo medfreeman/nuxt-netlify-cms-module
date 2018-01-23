@@ -5663,9 +5663,9 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-netlify-cms@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/netlify-cms/-/netlify-cms-1.0.3.tgz#444dde9d70c33e06a169439514d74ea7f604cd7c"
+netlify-cms@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/netlify-cms/-/netlify-cms-1.0.4.tgz#97f4a596a4bb4b4f9b4a7ffe30b67d6f8d310f54"
   dependencies:
     classnames "^2.2.5"
     create-react-class "^15.6.0"
@@ -5723,7 +5723,6 @@ netlify-cms@1.0.3:
     slate-plain-serializer "^0.4.0"
     slate-react "0.10.11"
     slate-soft-break "^0.6.0"
-    slug "^0.9.1"
     toml-j0.4 "^1.1.1"
     tomlify-j0.4 "^3.0.0-alpha.0"
     unified "^6.1.4"
@@ -8442,12 +8441,6 @@ slide@^1.1.3, slide@^1.1.5, slide@~1.1.3, slide@~1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
 
-slug@^0.9.1:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/slug/-/slug-0.9.1.tgz#af08f608a7c11516b61778aa800dce84c518cfda"
-  dependencies:
-    unicode ">= 0.3.1"
-
 sntp@1.x.x:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/sntp/-/sntp-1.0.9.tgz#6541184cc90aeea6c6e7b35e2659082443c66198"
@@ -9132,10 +9125,6 @@ unherit@^1.0.4:
   dependencies:
     inherits "^2.0.1"
     xtend "^4.0.1"
-
-"unicode@>= 0.3.1":
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/unicode/-/unicode-10.0.0.tgz#e5d51c1db93b6c71a0b879e0b0c4af7e6fdf688e"
 
 unified@^6.1.4:
   version "6.1.5"

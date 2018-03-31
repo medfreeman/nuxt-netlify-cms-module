@@ -39,7 +39,7 @@
     "codecov": "^3.0.0",
     "cross-env": "^5.0.5",
     "eslint": "^4.7.1",
-    "eslint-config-i-am-meticulous": "^7.0.1",
+    "eslint-config-i-am-meticulous": "^8.0.0",
     "eslint-config-prettier": "^2.5.0",
     "eslint-plugin-babel": "^5.0.0",
     "eslint-plugin-import": "^2.7.0",

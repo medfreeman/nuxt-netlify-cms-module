@@ -5,7 +5,8 @@
   "dependencies": {
     "@nuxtjs/axios": "^4.3.0",
     "nuxt": "latest",
-    "nuxtent": "latest"
+    "nuxtent": "latest",
+    "nuxt-netlify-cms": "../"
   },
   "scripts": {
     "dev": "nuxt",

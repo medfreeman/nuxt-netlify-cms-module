@@ -1,5 +1,5 @@
 module.exports = {
-  modules: ["nuxtent"],
+  modules: ["nuxtent", "nuxt-netlify-cms"],
   nuxtent: {
     content: {
       page: "/_post",

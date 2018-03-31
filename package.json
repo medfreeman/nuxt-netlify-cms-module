@@ -25,7 +25,7 @@
   "dependencies": {
     "js-yaml": "^3.10.0",
     "needlepoint": "^1.0.5",
-    "style-loader": "^0.19.0"
+    "style-loader": "^0.20.0"
   },
   "peerDependencies": {
     "netlify-cms": ">=0.4.0"

@@ -30,9 +30,12 @@ export default function NetlifyCmsModule(moduleOptions) {
   const config = configManager.config;
 
   // This will be called once when builder started
-  this.nuxt.plugin("build", builder => {
+  this.nuxt.hook("build:before", builder => {
     // This will be run just before webpack compiler starts
-    builder.plugin("compile", ({ builder, compiler }) => {
+    this.nuxt.hook("build:compile", ({ name }) => {
+      if (name !== WEBPACK_CLIENT_COMPILER_NAME) {
+        return;
+      }
       const webpackConfig = getWebpackNetlifyConfig(
         WEBPACK_NETLIFY_COMPILER_NAME,
         this.options,
@@ -54,18 +57,6 @@ export default function NetlifyCmsModule(moduleOptions) {
 
       const netlifyCompiler = webpack(webpackConfig);
 
-      // Only add the compiler in production,
-      // in dev watch will be started by dev-middleware
-      if (!this.options.dev) {
-        compiler.compilers.push(netlifyCompiler);
-        compiler[netlifyCompiler.name] = netlifyCompiler;
-      }
-
-      // Use shared filesystem and cache
-      const clientCompiler = compiler[WEBPACK_CLIENT_COMPILER_NAME];
-      netlifyCompiler.outputFileSystem = clientCompiler.outputFileSystem;
-      netlifyCompiler.cache = clientCompiler.cache;
-
       // This will be run just after webpack compiler ends
       netlifyCompiler.plugin("done", async stats => {
         // Don't reload failed builds
@@ -77,8 +68,10 @@ export default function NetlifyCmsModule(moduleOptions) {
 
       // in development
       if (this.options.dev) {
+        // Use shared filesystem and cache
+        netlifyCompiler.outputFileSystem = builder.mfs;
         // Show a message inside console when the build is ready
-        builder.plugin("compiled", async () => {
+        this.nuxt.hook("build:compiled", async () => {
           debug(`Serving on: ${config.adminPath}`);
         });
 
@@ -108,8 +101,29 @@ export default function NetlifyCmsModule(moduleOptions) {
         }
 
         // Stop webpack middleware on nuxt.close()
-        this.nuxt.plugin("close", async () => {
+        this.nuxt.hook("close", async () => {
           await this.nuxt.renderer.netlifyWebpackDevMiddleware.close();
+        });
+      } else {
+        // Only run the compiler in production,
+        // in dev build is started by dev-middleware hooked to client webpack compiler
+        this.nuxt.hook("build:done", async () => {
+          await new Promise((resolve, reject) => {
+            netlifyCompiler.run((err, stats) => {
+              /* istanbul ignore next */
+              if (err) {
+                return reject(err);
+              } else if (stats.hasErrors()) {
+                if (this.options.test) {
+                  err = stats.toString(this.options.build.stats);
+                }
+
+                return reject(err);
+              }
+
+              resolve();
+            });
+          });
         });
       }
     });
@@ -157,7 +171,7 @@ export default function NetlifyCmsModule(moduleOptions) {
     this.nuxt.renderer.netlifyFileWatcher = fileWatcher;
 
     // Stop watching on nuxt.close()
-    this.nuxt.plugin("close", () => {
+    this.nuxt.hook("close", () => {
       this.nuxt.renderer.netlifyFileWatcher.close();
     });
   } else {
@@ -171,8 +185,8 @@ export default function NetlifyCmsModule(moduleOptions) {
   }
 
   // Move cms folder from `dist/_nuxt` folder to `dist/` after nuxt generate
-  this.nuxt.plugin("generator", generator => {
-    generator.plugin("generate", async () => {
+  this.nuxt.hook("generate", generator => {
+    generator.hook("generate", async () => {
       await move(
         join(generator.distNuxtPath, config.adminPath).replace(/\/$/, ""),
         join(generator.distPath, config.adminPath).replace(/\/$/, "")

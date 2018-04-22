@@ -10,5 +10,11 @@ export default {
   render: {
     resourceHints: false
   },
-  modules: [module]
+  modules: [
+    {
+      src: "@@/src/module.js",
+      options: {},
+      handler: module
+    }
+  ]
 };

@@ -57,7 +57,7 @@ This module will look for the Netlify CMS config file and extensions in the foll
 
 #### Netlify CMS `config.yml`
 
-You can specify a [custom configuration](https://www.netlifycms.org/docs/#configuration), that will be parsed and merged with the module's [netlify CMS options](#cmsconfig).
+You can specify a [custom configuration](https://www.netlifycms.org/docs/configuration-options/), that will be parsed and merged with the module's [netlify CMS options](#cmsconfig).
 
 You have to place the file in your Netlify CMS module config folder and name it `config.yml`.
 
@@ -69,7 +69,7 @@ This file can be changed while `nuxt dev` is running, and Netlify CMS will be up
 
 This module will look for [Netlify CMS extensions](https://github.com/netlify/netlify-cms/blob/master/docs/intro.md#customization) in \*.js files contained in Netlify CMS module config folder and subfolders, and include them in the CMS build.
 
-These are of two kinds, [Custom Previews](https://www.netlifycms.org/docs/customization/) and [Widgets](https://www.netlifycms.org/docs/extending/).
+These are of two kinds, [Custom Previews](https://www.netlifycms.org/docs/customization/) and [Widgets](https://www.netlifycms.org/docs/custom-widgets/).
 
 :information_source: The global variable `CMS` is available to these javascript files to reference the CMS object.
 

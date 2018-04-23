@@ -57,7 +57,7 @@ This module will look for the Netlify CMS config file and extensions in the foll
 
 #### Netlify CMS `config.yml`
 
-You can specify a [custom configuration](https://www.netlifycms.org/docs/configuration-options/), that will be parsed and merged with the module's [netlify CMS options](#cmsconfig).
+You can specify a [custom configuration](https://www.netlifycms.org/docs/add-to-your-site/#configuration), that will be parsed and merged with the module's [netlify CMS options](#cmsconfig).
 
 You have to place the file in your Netlify CMS module config folder and name it `config.yml`.
 

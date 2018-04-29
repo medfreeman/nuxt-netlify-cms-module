@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v3.0.0...v3.0.1) (2018-04-29)
+
+
+### Bug Fixes
+
+* **package:** fix `regeneratorRuntime` error ([f96d5fe](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/f96d5fe)), closes [#51](https://github.com/medfreeman/nuxt-netlify-cms-module/issues/51)
+
+* **docs:** fix update readme.md links to match Netlify's docs
+
+Thanks gangsthub !
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v2.0.1...v3.0.0) (2018-04-22)
 

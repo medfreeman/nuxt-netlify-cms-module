@@ -67,6 +67,8 @@ This file can be changed while `nuxt dev` is running, and Netlify CMS will be up
 
 #### Netlify CMS customizations
 
+This module will look for Netlify CMS customizations in \*.js files contained in Netlify CMS module config folder and subfolders, and include them in the CMS build.
+
 These are of two kinds, [Custom Previews](https://www.netlifycms.org/docs/customization/) and [Custom Widgets](https://www.netlifycms.org/docs/custom-widgets/).
 
 :information_source: The global variable `CMS` is available to these javascript files to reference the CMS object.

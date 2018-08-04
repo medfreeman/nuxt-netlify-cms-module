@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.2"></a>
+## [3.0.2](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v3.0.1...v3.0.2) (2018-08-04)
+
+
+### Bug Fixes
+
+* use `cms-config-url` html link to determine proper netlify cms `config.yml` path ([1b07d51](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/1b07d51))
+
+
+
 <a name="3.0.1"></a>
 ## [3.0.1](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v3.0.0...v3.0.1) (2018-04-29)
 

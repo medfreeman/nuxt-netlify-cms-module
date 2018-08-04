@@ -1,7 +1,7 @@
 {
   "name": "nuxt-netlify-cms",
   "description": "Easy Netlify CMS integration with nuxt.js",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "license": "MIT",
   "main": "index.js",
   "author": "Mehdi Lahlou <mehdi.lahlou@free.fr>",

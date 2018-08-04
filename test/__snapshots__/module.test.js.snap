@@ -6,10 +6,11 @@ exports[`module admin 1`] = `
   <head>
     <meta charset=\\"utf-8\\" />
     <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\" />
+    <link href=\\"/admin/config.yml\\" type=\\"text/yaml\\" rel=\\"cms-config-url\\">
     <title>Content Manager</title>
   </head>
   <body>
-  <script type=\\"text/javascript\\" src=\\"/admin/bundle.1ae2be3d50182028bccf.js\\"></script></body>
+  <script type=\\"text/javascript\\" src=\\"/admin/bundle.57440c18556c5552e2da.js\\"></script></body>
 </html>
 "
 `;

@@ -1,18 +1,18 @@
 language: node_js
 node_js:
-  - '8'
+- '8'
 matrix:
   fast_finish: true
 cache:
   directories:
-    - $HOME/.npm
-    - $HOME/.cache/yarn
-    - node_modules
+  - "$HOME/.npm"
+  - "$HOME/.cache/yarn"
+  - node_modules
 before_install:
-  - yarn config set no-progress
-  - yarn global add greenkeeper-lockfile@1
+- yarn config set no-progress
+- yarn global add greenkeeper-lockfile@1
 install:
-  - yarn
+- yarn
 before_script: greenkeeper-lockfile-update
 script: yarn test
 after_script: greenkeeper-lockfile-upload
@@ -26,3 +26,6 @@ deploy:
     tags: true
     node: '8'
   skip_cleanup: true
+env:
+  global:
+    secure: gMX/67uE1EsO6BhHxgzzUmFd1Q0rmblgPfkYfP/3GHo53JIa6xWg4522cUVJAawzxnEdrwJ3BFAMT31okP6hTGftY0xPlFzgFmgBU/Vkkc6MRpslcbMHlsn/Gs1uAfcDZq3E4u1usLoMKKGTJeAkneyHUqzsYNxPIEUSmJbYG69l7hdRX2TrQD19/AwA9BapL21yp/gPqxexnjEK1hMgcn3rnSAoPzyGqLVdStmMQ/uKf/rBg4jincXPAPZeZC2m+OaeIfbCPg2Q1/G/ozWWz2aZUL1F1TNs1qlnJuXLQ+n2b67moJyXBEVw9CW9LRezBGmXo1z+sZlGzK76/IATVBpCc1Q/QF8Sdxoh484Al18bLaQjTVqiMl72LYYMJqskfqrm16chj4Nukg9TAodAMlCew4zl0VU7BrTA034namrzQsLooXmTq2Lv3No0TsPGxrdZ+HNTVC2JxqEK33t/+pAXG6nCi1cAa7utSefw8SukFgVHGiWYUdcbzz7K3lc+0mmGJ5Qzz/YWfu5E0hf96laUv5p+FyuwFIV1LS6Z74iDASfQrI72OeOAh7vG9l7vbO6CNCcPN6r6ul125CO26CL/0G5Tvz2iCP6Ik1QAK+INY6P2O03dx/q4RNaLkI0mCjL3uG/47VS7389mj5txPKm2ow1qWD/uVXhkW6J7aV4=

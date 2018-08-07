@@ -1,5 +1,3 @@
-import { join } from "path";
-
 import { Nuxt, Builder, Generator } from "nuxt";
 import request from "request-promise-native";
 import Koa from "koa";
@@ -15,12 +13,13 @@ const url = path => `http://localhost:${process.env.PORT}${path}`;
 const get = path => request(url(path));
 
 let nuxt;
+let generator;
 let server;
 
 const serve = () => {
   const app = new Koa();
 
-  app.use(serveStatic(join(nuxt.options.buildDir, "dist")));
+  app.use(serveStatic(generator.distPath));
   server = app.listen(process.env.PORT);
 };
 
@@ -54,7 +53,7 @@ const generate = (config = {}) => async () => {
   // Build a fresh nuxt
   nuxt = new Nuxt(mergedConfig);
   const builder = new Builder(nuxt);
-  const generator = new Generator(nuxt, builder);
+  generator = new Generator(nuxt, builder);
   await generator.generate();
   serve();
 };

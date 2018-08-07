@@ -1,9 +1,13 @@
 import { get, commonBefore, commonAfter } from "./nuxt";
 
-describe("module", () => {
-  beforeAll(commonBefore());
+describe("module", async () => {
+  beforeAll(async () => {
+    await commonBefore()();
+  });
 
-  afterAll(commonAfter);
+  afterAll(async () => {
+    await commonAfter();
+  });
 
   test("render", async () => {
     const html = await get("/");

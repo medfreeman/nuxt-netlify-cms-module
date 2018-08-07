@@ -1,12 +1,16 @@
 import { get, generate, generateAfter } from "./nuxt";
 
-describe("module dev mode", () => {
-  beforeAll(generate());
+describe("module generate mode", async () => {
+  beforeAll(async () => {
+    await generate()();
+  });
 
-  afterAll(generateAfter);
+  afterAll(async () => {
+    await generateAfter();
+  });
 
   test("admin", async () => {
     const html = await get("/admin/");
-    expect(html).toMatch(/.*<script[\s\S]*?>[\s\S]*?<\/script><\/body>/);
+    expect(html).toMatchSnapshot();
   });
 });

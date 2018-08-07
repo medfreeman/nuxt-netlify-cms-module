@@ -1,9 +1,13 @@
 import { get, commonBefore, commonAfter } from "./nuxt";
 
-describe("module dev mode", () => {
-  beforeAll(commonBefore({ dev: true }));
+describe("module dev mode", async () => {
+  beforeAll(async () => {
+    await commonBefore({ dev: true })();
+  });
 
-  afterAll(commonAfter);
+  afterAll(async () => {
+    await commonAfter();
+  });
 
   test("render", async () => {
     const html = await get("/");
@@ -12,6 +16,6 @@ describe("module dev mode", () => {
 
   test("admin", async () => {
     const html = await get("/admin/");
-    expect(html).toMatch(/.*<script[\s\S]*?>[\s\S]*?<\/script><\/body>/);
+    expect(html).toMatchSnapshot();
   });
 });

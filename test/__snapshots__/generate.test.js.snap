@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`module generate mode admin 1`] = `
+"<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=\\"utf-8\\" />
+    <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\" />
+    <link href=\\"/admin/config.yml\\" type=\\"text/yaml\\" rel=\\"cms-config-url\\">
+    <title>Content Manager</title>
+  </head>
+  <body>
+  <script type=\\"text/javascript\\" src=\\"/admin/bundle.e71f9cb57b0e8fbe149a.js\\"></script></body>
+</html>
+"
+`;

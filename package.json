@@ -52,7 +52,7 @@
     "koa-static": "^5.0.0",
     "lint-staged": "^7.0.1",
     "netlify-cms": "2.0.8",
-    "nuxt": "^1.4.0",
+    "nuxt": "^1.4.2",
     "prettier": "^1.7.0",
     "request-promise-native": "^1.0.4",
     "standard-version": "^4.2.0"

@@ -11,6 +11,7 @@ cache:
   - node_modules
 before_install:
 - yarn config set no-progress
+- yarn config set ignore-engines true
 - yarn global add greenkeeper-lockfile@1
 install:
 - yarn

@@ -1,5 +1,3 @@
-import { join } from "path";
-
 import { Nuxt, Builder, Generator } from "nuxt";
 import request from "request-promise-native";
 import Koa from "koa";
@@ -15,37 +13,26 @@ const url = path => `http://localhost:${process.env.PORT}${path}`;
 const get = path => request(url(path));
 
 let nuxt;
+let generator;
 let server;
 
-const serve = () => {
+const serve = (isStatic = false) => {
   const app = new Koa();
 
-  app.use(serveStatic(join(nuxt.options.buildDir, "dist")));
+  app.use(
+    !isStatic
+      ? ctx => {
+          ctx.status = 200;
+          ctx.respond = false;
+          ctx.req.ctx = ctx;
+          nuxt.render(ctx.req, ctx.res);
+        }
+      : serveStatic(generator.distPath)
+  );
   server = app.listen(process.env.PORT);
 };
 
-const stopServe = () => {
-  server.close();
-};
-
-const commonBefore = (config = {}) => async () => {
-  const mergedConfig = {
-    ...baseConfig,
-    ...config
-  };
-
-  // Build a fresh nuxt
-  nuxt = new Nuxt(mergedConfig);
-  await new Builder(nuxt).build();
-  await nuxt.listen(process.env.PORT);
-};
-
-const commonAfter = async () => {
-  // Close all opened resources
-  await nuxt.close();
-};
-
-const generate = (config = {}) => async () => {
+const commonBefore = async (config = {}) => {
   const mergedConfig = {
     ...baseConfig,
     ...config
@@ -54,14 +41,28 @@ const generate = (config = {}) => async () => {
   // Build a fresh nuxt
   nuxt = new Nuxt(mergedConfig);
   const builder = new Builder(nuxt);
-  const generator = new Generator(nuxt, builder);
-  await generator.generate();
+  await builder.build();
   serve();
 };
 
-const generateAfter = async () => {
-  await commonAfter();
-  stopServe();
+const generate = async (config = {}) => {
+  const mergedConfig = {
+    ...baseConfig,
+    ...config
+  };
+
+  // Build a fresh nuxt
+  nuxt = new Nuxt(mergedConfig);
+  const builder = new Builder(nuxt);
+  generator = new Generator(nuxt, builder);
+  await generator.generate();
+  serve(true);
 };
 
-export { get, commonBefore, commonAfter, generate, generateAfter };
+const commonAfter = async () => {
+  // Close all opened resources
+  server.close();
+  await nuxt.close();
+};
+
+export { get, commonBefore, commonAfter, generate };

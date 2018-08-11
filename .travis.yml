@@ -6,14 +6,14 @@ matrix:
   fast_finish: true
 cache:
   directories:
-    - $HOME/.npm
-    - $HOME/.cache/yarn
-    - node_modules
+  - "$HOME/.npm"
+  - "$HOME/.cache/yarn"
+  - node_modules
 before_install:
-  - yarn config set no-progress
-  - yarn global add greenkeeper-lockfile@1
+- yarn config set no-progress
+- yarn global add greenkeeper-lockfile@1
 install:
-  - yarn
+- yarn
 before_script: greenkeeper-lockfile-update
 script: yarn test
 after_script: greenkeeper-lockfile-upload
@@ -22,8 +22,11 @@ deploy:
   provider: npm
   email: mlahlou@protonmail.ch
   api_key:
-    secure: BBAzKU6rnL58Rx4RqqZk7wClnqeJJzBpFQf/Hd95vo3OK1vtT+gcZupRog8awReFZp6CF6AVQizfK2O+t5VfqI58N4BgWP9DTs6ZHnXUvV4u0Djlr5hDUuk0spIi6Som/kyJ0ytaeu68JUK31xZa0VJQPmyQZ11JH/LoyP8BISm84B80g8pBhOXnp1nexU+Kn2DWXMDWX6OKP+y8xcuN/NEBzIrFmPg9o/D7gN41MkJRmQ5tsCjlO2seiv7e6azZKk1JeF7KNIb8dae3Ae55vFrNggPmbYYQt30nGxXgmL0STTFkKxFsAf4glIN1Ge2z4vUsFbMJSADnnaBSiwouQVJ3o4MAyEIm66oLT+vOxkwfta3raYjytQ7oTEJBTFKGuFFpunj/tOIjv07sReWJ+9yjlplcwYafqKU2g+JzHx2Mw86pDx5u1MeVB6T2OuHKd9xcnWrZ0Tj7Wki83/YV4/qKK8tcVGGptmKkUTix+WEW3Fi+mJEA4z/jJRCDhUtuhdXFzoC0HOzPmTAQX3JwuBomhuH84Orb3QlZjsXnJ+xic/ycjppfNJL3v9MK8oHQTkGmuUKuA6QjyZc8RM9a2ZGpVHxZrLqhP8Wo6epU36tXncuOpTrkjJ27lSacGEkGrfzVf77VmdLqChwDfmXR5Nqw7sie1eHSCM9R3bhaw6I=
+    secure: DALnF41WHuyvGitd6Sa+B+T9SPbR7VrKZHfA0pKtwggSztaBQvFcIrkCvO+3hFT87tCbHFW4H5fhJ1xFUr26MnhMbHHEqZSXvVF5R+DMkt5mPD4SgYmQbBcL10uO/oh/mRBNDmwGB6+cEu5YkviVHC79j3iXX4YIToAY8idxEOOOYZ/RDS+Yq07WCX5aD8E2ppeLF1Ypjmq5W5ZQk6jaSuD6rGtdyaRb/7GOiTbWZK9+ZOuavYGijx0YXf4FU5Vl0aTJuVpCjffvFk4u4xpswiTWAS+Zpcm7cbcauqnjlzZglnxBwpYvi2bd8FQ0nb1S27zpRpNswqBl4D3ngN5JIrewch2Eg8AaBySHvVETzIMzvjrM26RZxx6s/wQpMiy/8aUzk2mrCfz0GeyExCBMh7Cc8Yii6K/zbnWQGihXTtNItuRRVsFntAE6RkYUL6CEjM4l4MkZAEWvuDBdqzf2GdknJ1rqX6EaKo7pkoGmwu0GiGzUmXeyVCAFJ8T2Qz+I7pyUbIZJZo5pKrcfT302tbRlwcoRVNIfeS9cFYsxWffSrwQWL1JodQWPxXJScsIcljm92uSUi/sragPDo9BXgqJn9j3cpBMs6RU95Wo3kNIk+vxKekgqsVWPXLrJshd974gVSFuk8/5UlhqVF9ITzDKdTXo+XgNeSZ1Ymzog7eI=
   on:
     tags: true
     node: '8'
   skip_cleanup: true
+env:
+  global:
+    secure: gMX/67uE1EsO6BhHxgzzUmFd1Q0rmblgPfkYfP/3GHo53JIa6xWg4522cUVJAawzxnEdrwJ3BFAMT31okP6hTGftY0xPlFzgFmgBU/Vkkc6MRpslcbMHlsn/Gs1uAfcDZq3E4u1usLoMKKGTJeAkneyHUqzsYNxPIEUSmJbYG69l7hdRX2TrQD19/AwA9BapL21yp/gPqxexnjEK1hMgcn3rnSAoPzyGqLVdStmMQ/uKf/rBg4jincXPAPZeZC2m+OaeIfbCPg2Q1/G/ozWWz2aZUL1F1TNs1qlnJuXLQ+n2b67moJyXBEVw9CW9LRezBGmXo1z+sZlGzK76/IATVBpCc1Q/QF8Sdxoh484Al18bLaQjTVqiMl72LYYMJqskfqrm16chj4Nukg9TAodAMlCew4zl0VU7BrTA034namrzQsLooXmTq2Lv3No0TsPGxrdZ+HNTVC2JxqEK33t/+pAXG6nCi1cAa7utSefw8SukFgVHGiWYUdcbzz7K3lc+0mmGJ5Qzz/YWfu5E0hf96laUv5p+FyuwFIV1LS6Z74iDASfQrI72OeOAh7vG9l7vbO6CNCcPN6r6ul125CO26CL/0G5Tvz2iCP6Ik1QAK+INY6P2O03dx/q4RNaLkI0mCjL3uG/47VS7389mj5txPKm2ow1qWD/uVXhkW6J7aV4=

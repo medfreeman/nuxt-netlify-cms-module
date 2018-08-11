@@ -3,10 +3,14 @@ jest.mock("../src/utils/yaml");
 
 import { get, commonBefore, commonAfter } from "./nuxt";
 
-describe("config", () => {
-  beforeAll(commonBefore());
+describe("config", async () => {
+  beforeAll(async () => {
+    await commonBefore();
+  });
 
-  afterAll(commonAfter);
+  afterAll(async () => {
+    await commonAfter();
+  });
 
   test("netlify-cms.yml", async () => {
     const config = await get("/admin/config.yml");

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`module admin 1`] = `
+exports[`module generate mode admin 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>

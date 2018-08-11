@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`module admin 1`] = `
+exports[`module dev mode admin 1`] = `
 "<!DOCTYPE html>
 <html>
   <head>
@@ -10,7 +10,7 @@ exports[`module admin 1`] = `
     <title>Content Manager</title>
   </head>
   <body>
-  <script type=\\"text/javascript\\" src=\\"/admin/bundle.3d5568739a801555ab13.js\\"></script></body>
+  <script type=\\"text/javascript\\" src=\\"/admin/bundle.f7f29d7ed981b4caec62.js\\"></script></body>
 </html>
 "
 `;

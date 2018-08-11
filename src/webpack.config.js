@@ -26,6 +26,10 @@ export default function webpackNetlifyCmsConfig(
   const PAGE_TEMPLATE = resolve(__dirname, "../lib/template", "index.html");
   const REQUIRE_EXTENSIONS = existsSync(EXTENSIONS_DIR) ? true : false;
   const HMR_CLIENT = resolve(__dirname, "../lib/hmr.client");
+  const CSS_FILE = "netlify-cms/dist/cms.css";
+  const REQUIRE_CSS = existsSync(resolve(__dirname, "node_modules", CSS_FILE))
+    ? true
+    : false;
 
   const config = {
     name,
@@ -65,7 +69,9 @@ export default function webpackNetlifyCmsConfig(
         chunksSortMode: "dependency"
       }),
       new webpack.DefinePlugin({
-        REQUIRE_EXTENSIONS
+        REQUIRE_EXTENSIONS,
+        REQUIRE_CSS,
+        CSS_FILE
       })
     ]
   };

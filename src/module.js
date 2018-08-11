@@ -185,14 +185,12 @@ export default function NetlifyCmsModule(moduleOptions) {
   }
 
   // Move cms folder from `dist/_nuxt` folder to `dist/` after nuxt generate
-  this.nuxt.hook("generate", generator => {
-    generator.hook("generate", async () => {
-      await move(
-        join(generator.distNuxtPath, config.adminPath).replace(/\/$/, ""),
-        join(generator.distPath, config.adminPath).replace(/\/$/, "")
-      );
-      debug("Netlify CMS files copied");
-    });
+  this.nuxt.hook("generate:distCopied", async generator => {
+    await move(
+      join(generator.distNuxtPath, config.adminPath).replace(/\/$/, ""),
+      join(generator.distPath, config.adminPath).replace(/\/$/, "")
+    );
+    debug("Netlify CMS files copied");
   });
 }
 

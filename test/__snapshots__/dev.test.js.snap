@@ -10,7 +10,7 @@ exports[`module dev mode admin 1`] = `
     <title>Content Manager</title>
   </head>
   <body>
-  <script type=\\"text/javascript\\" src=\\"/admin/bundle.d1e28a1f3d3e1d943036.js\\"></script></body>
+  <script type=\\"text/javascript\\" src=\\"/admin/bundle.f7f29d7ed981b4caec62.js\\"></script></body>
 </html>
 "
 `;

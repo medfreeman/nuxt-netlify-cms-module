@@ -5,7 +5,7 @@ import { get, commonBefore, commonAfter } from "./nuxt";
 
 describe("config", async () => {
   beforeAll(async () => {
-    await commonBefore()();
+    await commonBefore();
   });
 
   afterAll(async () => {

@@ -1,12 +1,12 @@
-import { get, generate, generateAfter } from "./nuxt";
+import { get, generate, commonAfter } from "./nuxt";
 
 describe("module generate mode", async () => {
   beforeAll(async () => {
-    await generate()();
+    await generate();
   });
 
   afterAll(async () => {
-    await generateAfter();
+    await commonAfter();
   });
 
   test("admin", async () => {

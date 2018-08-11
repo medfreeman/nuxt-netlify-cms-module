@@ -16,18 +16,23 @@ let nuxt;
 let generator;
 let server;
 
-const serve = () => {
+const serve = (isStatic = false) => {
   const app = new Koa();
 
-  app.use(serveStatic(generator.distPath));
+  app.use(
+    !isStatic
+      ? ctx => {
+          ctx.status = 200;
+          ctx.respond = false;
+          ctx.req.ctx = ctx;
+          nuxt.render(ctx.req, ctx.res);
+        }
+      : serveStatic(generator.distPath)
+  );
   server = app.listen(process.env.PORT);
 };
 
-const stopServe = () => {
-  server.close();
-};
-
-const commonBefore = (config = {}) => async () => {
+const commonBefore = async (config = {}) => {
   const mergedConfig = {
     ...baseConfig,
     ...config
@@ -35,16 +40,12 @@ const commonBefore = (config = {}) => async () => {
 
   // Build a fresh nuxt
   nuxt = new Nuxt(mergedConfig);
-  await new Builder(nuxt).build();
-  await nuxt.listen(process.env.PORT);
+  const builder = new Builder(nuxt);
+  await builder.build();
+  serve();
 };
 
-const commonAfter = async () => {
-  // Close all opened resources
-  await nuxt.close();
-};
-
-const generate = (config = {}) => async () => {
+const generate = async (config = {}) => {
   const mergedConfig = {
     ...baseConfig,
     ...config
@@ -55,12 +56,13 @@ const generate = (config = {}) => async () => {
   const builder = new Builder(nuxt);
   generator = new Generator(nuxt, builder);
   await generator.generate();
-  serve();
+  serve(true);
 };
 
-const generateAfter = async () => {
-  await commonAfter();
-  stopServe();
+const commonAfter = async () => {
+  // Close all opened resources
+  server.close();
+  await nuxt.close();
 };
 
-export { get, commonBefore, commonAfter, generate, generateAfter };
+export { get, commonBefore, commonAfter, generate };

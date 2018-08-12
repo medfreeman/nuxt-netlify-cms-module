@@ -12,6 +12,7 @@ const toYAML = function(object) {
     const yaml = safeDump(object);
     return yaml;
   } catch (e) {
+    /* istanbul ignore next */
     debug(e.message, e.name);
     return false;
   }
@@ -26,6 +27,7 @@ const loadYAMLFile = function(configFile) {
     });
     return contents;
   } catch (e) {
+    /* istanbul ignore next */
     if (e.code !== "ENOENT") {
       debug(e.message, e.name);
     }

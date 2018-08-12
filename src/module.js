@@ -61,6 +61,7 @@ export default function NetlifyCmsModule(moduleOptions) {
       netlifyCompiler.plugin("done", async stats => {
         // Don't reload failed builds
         if (stats.hasErrors()) {
+          /* istanbul ignore next */
           return;
         }
         debug(`Bundle built!`);

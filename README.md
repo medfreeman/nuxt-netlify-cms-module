@@ -1,6 +1,6 @@
 # nuxt-netlify-cms-module
 
-<p align="center">
+<p>
   <a href="https://circleci.com/gh/medfreeman/nuxt-netlify-cms-module">
     <img src="https://circleci.com/gh/medfreeman/nuxt-netlify-cms-module.svg?style=svg">
   </a>

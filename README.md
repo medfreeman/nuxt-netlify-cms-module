@@ -1,11 +1,5 @@
 # nuxt-netlify-cms-module
 
-<p>
-  <a href="https://circleci.com/gh/medfreeman/nuxt-netlify-cms-module">
-    <img src="https://circleci.com/gh/medfreeman/nuxt-netlify-cms-module.svg?style=svg">
-  </a>
-</p>
-
 [![npm version](https://img.shields.io/npm/v/nuxt-netlify-cms.svg)](https://www.npmjs.com/package/nuxt-netlify-cms)
 [![npm](https://img.shields.io/npm/dt/nuxt-netlify-cms.svg?style=flat-square)](https://npmjs.com/package/nuxt-netlify-cms)
 [![circleci](https://badgen.net/circleci/github/medfreeman/nuxt-netlify-cms-module)](https://circleci.com/gh/medfreeman/nuxt-netlify-cms-module)

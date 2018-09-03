@@ -53,7 +53,7 @@ This module will look for the Netlify CMS config file and extensions in the foll
 
 :information_source: The nuxt.js [srcDir](https://nuxtjs.org/api/configuration-srcdir/) is set to the project root folder by default. If you don't change this value in nuxt config, you'll just have to create the "netlify-cms" directory at your project root folder.
 
-:information_source: If you don't use any of the following two features, there's no need to create this folder.
+:information_source: If you don't use any of the following two features, there's no need to create this folder. But since `netlify-cms` needs a configuration specific to your repository, you'll have to specify it through [options](#cmsconfig).
 
 #### Netlify CMS `config.yml`
 

@@ -46,7 +46,7 @@
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jest": "^21.1.0",
     "git-exec-and-restage": "^1.0.1",
-    "husky": "^0.14.3",
+    "husky": "^1.0.0",
     "jest": "^23.5.0",
     "koa": "^2.3.0",
     "koa-static": "^5.0.0",

@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/nuxt-netlify-cms.svg)](https://www.npmjs.com/package/nuxt-netlify-cms)
 [![npm](https://img.shields.io/npm/dt/nuxt-netlify-cms.svg?style=flat-square)](https://npmjs.com/package/nuxt-netlify-cms)
-[![circleci](https://badgen.net/circleci/github/medfreeman/nuxt-netlify-cms-module)](https://circleci.com/gh/medfreeman/nuxt-netlify-cms-module)
+[![circleci](https://badgen.net/circleci/github/medfreeman/nuxt-netlify-cms-module/master)](https://circleci.com/gh/medfreeman/nuxt-netlify-cms-module)
 [![Codecov](https://img.shields.io/codecov/c/github/medfreeman/nuxt-netlify-cms-module.svg?style=flat-square)](https://codecov.io/gh/medfreeman/nuxt-netlify-cms-module)
 [![Greenkeeper badge](https://badges.greenkeeper.io/medfreeman/nuxt-netlify-cms-module.svg)](https://greenkeeper.io/)
 [![Dependencies](https://img.shields.io/david/medfreeman/nuxt-netlify-cms-module.svg)](https://david-dm.org/medfreeman/nuxt-netlify-cms-module)

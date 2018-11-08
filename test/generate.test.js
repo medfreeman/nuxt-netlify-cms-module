@@ -1,6 +1,6 @@
 import { get, generate, commonAfter } from "./nuxt";
 
-describe("module generate mode", async () => {
+describe("module generate mode", () => {
   beforeAll(async () => {
     await generate();
   });

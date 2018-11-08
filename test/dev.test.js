@@ -1,6 +1,6 @@
 import { get, commonBefore, commonAfter } from "./nuxt";
 
-describe("module dev mode", async () => {
+describe("module dev mode", () => {
   beforeAll(async () => {
     await commonBefore({ dev: true });
   });

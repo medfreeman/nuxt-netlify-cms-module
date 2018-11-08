@@ -3,7 +3,7 @@ jest.mock("../src/utils/yaml");
 
 import { get, commonBefore, commonAfter } from "./nuxt";
 
-describe("config", async () => {
+describe("config", () => {
   beforeAll(async () => {
     await commonBefore();
   });

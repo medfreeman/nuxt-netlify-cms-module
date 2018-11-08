@@ -5,7 +5,7 @@ import serveStatic from "koa-static";
 
 import baseConfig from "./fixture/nuxt.config";
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
+jest.setTimeout(60000);
 process.env.PORT = process.env.PORT || 5060;
 process.env.NODE_ENV = "production";
 

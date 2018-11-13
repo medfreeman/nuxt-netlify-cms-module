@@ -63,3 +63,7 @@ typings/
 
 # build dir
 dist/
+
+# SonarScanner output
+.scannerwork
+debug.json

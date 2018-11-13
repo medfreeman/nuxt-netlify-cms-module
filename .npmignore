@@ -3,3 +3,6 @@ src/
 .nyc_output/
 coverage/
 test/
+# SonarScanner output
+sonar-project.properties
+debug.json

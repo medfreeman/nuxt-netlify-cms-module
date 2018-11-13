@@ -18,10 +18,12 @@ jobs:
 
       # Disable yarn progress bar for perf
       - run:
+          name: Disabling yarn progress bar for performance
           command: yarn config set no-progress
 
       # Disable yarn engine compatibility errors
       - run:
+          name: Disabling yarn engine compatibility errors
           command: yarn config set ignore-engines true
 
       # Greenkeeper-lockfile
@@ -31,6 +33,7 @@ jobs:
 
       # Sonar-scanner
       - run:
+          name: Installing sonar-scanner
           command: yarn global add sonarqube-scanner
 
       # Install dependencies

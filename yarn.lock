@@ -5655,6 +5655,12 @@ jest-snapshot@^23.5.0:
     pretty-format "^23.5.0"
     semver "^5.5.0"
 
+jest-sonar-reporter@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jest-sonar-reporter/-/jest-sonar-reporter-2.0.0.tgz#faa54a7d2af7198767ee246a82b78c576789cf08"
+  dependencies:
+    xml "^1.0.1"
+
 jest-util@^23.4.0:
   version "23.4.0"
   resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-23.4.0.tgz#4d063cb927baf0a23831ff61bec2cbbf49793561"
@@ -11530,6 +11536,10 @@ xml-char-classes@^1.0.0:
 xml-name-validator@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-2.0.1.tgz#4d8b8f1eccd3419aa362061becef515e1e559635"
+
+xml@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/xml/-/xml-1.0.1.tgz#78ba72020029c5bc87b8a81a3cfcd74b4a2fc1e5"
 
 "xtend@>=4.0.0 <4.1.0-0", xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.1"

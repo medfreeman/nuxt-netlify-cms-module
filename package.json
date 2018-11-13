@@ -7,9 +7,6 @@
   "author": "Mehdi Lahlou <mehdi.lahlou@free.fr>",
   "repository": "https://github.com/medfreeman/nuxt-netlify-cms-module.git",
   "scripts": {
-    "#<git hooks>": "handled by husky",
-    "precommit": "lint-staged",
-    "#</git hooks>": "handled by husky",
     "lint": "eslint --ignore-path .gitignore --fix \"**/*.js\"",
     "test": "cross-env NODE_ENV=test DEBUG=nuxt:netlify-cms jest --runInBand --forceExit",
     "pretest": "yarn lint",
@@ -122,5 +119,10 @@
   "prettier": {
     "printWidth": 80,
     "parser": "babylon"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

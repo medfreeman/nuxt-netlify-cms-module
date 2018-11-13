@@ -46,6 +46,7 @@ jobs:
           key: yarn-{{ checksum "yarn.lock" }}
           paths:
             - "node_modules"
+            - "/root/.sonar"
 
       # Update yarn.lock
       - run:

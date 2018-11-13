@@ -60,7 +60,7 @@ jobs:
       # Coverage
       - run:
           name: Analyzing code & uploading test coverage
-          command: sonar-scanner -Dsonar.login=$SONAR_TOKEN
+          command: sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.branch.name=$CIRCLE_BRANCH
 
       # Upload yarn.lock
       - run:

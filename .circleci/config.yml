@@ -29,6 +29,10 @@ jobs:
           name: Installing Greenkeeper-lockfile
           command: yarn global add greenkeeper-lockfile@1
 
+      # Sonar-scanner
+      - run:
+          command: yarn global add sonarqube-scanner
+
       # Install dependencies
       - run:
           name: Installing Dependencies
@@ -50,10 +54,10 @@ jobs:
           name: Testing
           command: yarn test
 
-      # Build
+      # Coverage
       - run:
-          name: Uploading test coverage
-          command: yarn codecov
+          name: Analyzing code & uploading test coverage
+          command: sonar-scanner -Dsonar.login=$SONAR_TOKEN
 
       # Upload yarn.lock
       - run:

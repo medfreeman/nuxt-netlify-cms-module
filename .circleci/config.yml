@@ -1,6 +1,6 @@
 orbs:
   node: circleci/node@0.0.3
-  npm: ci-tools/npm@dev:310ebff583bdd4073a51680cef9b2180e5a598d3
+  npm: ci-tools/npm@dev:1ae78b8e7391656ea1603c57c8eea1c7d6650415
 
 version: 2.1
 
@@ -91,4 +91,4 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
-          workspace-path: .
+          attach-workspace: true

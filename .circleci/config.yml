@@ -1,75 +1,12 @@
 orbs:
-  npm:
-    description: |
-      Configure and use the npm command-line interface (npm)
-
-    executors:
-      default:
-        description: |
-          The Debian-based Docker container to use when
-          configuring/using the npm cli
-
-        parameters:
-          node-version:
-            description: "The desired node version of the Docker container executor"
-            type: string
-            default: '10.13.0'
-
-          debian-release:
-            description: "The desired debian release of the Docker container executor"
-            type: string
-            default: 'stretch'
-
-        docker:
-          - image: circleci/node:<< parameters.node-version >>-<< parameters.debian-release >>-browsers
-
-    commands:
-      authenticate:
-        parameters:
-          token:
-            type: string
-        steps:
-          - run:
-              name: Authenticating with npm registry
-              command: echo "//registry.npmjs.org/:_authToken=<< parameters.token >>" > ~/.npmrc
-
-      publish:
-        steps:
-          - run:
-              name: Publishing package to npm registry
-              command: npm publish
-
-    jobs:
-      publish:
-        executor: default
-
-        parameters:
-          workspace-path:
-            description: "The key of a workflow workspace which contains the package to publish."
-            type: string
-            default: ''
-
-          token:
-            description: "Enter either your token or use the CircleCI UI to add your token under the 'NPM_TOKEN' env var"
-            type: string
-            default: '${NPM_TOKEN}'
-
-        steps:
-          - when:
-              condition: <<parameters.workspace-path>>
-              steps:
-                - attach_workspace:
-                    at: <<parameters.workspace-path>>
-          - authenticate:
-              token: << parameters.token >>
-          - publish
+  node: circleci/node@0.0.3
+  npm: ci-tools/npm@dev:310ebff583bdd4073a51680cef9b2180e5a598d3
 
 version: 2.1
 
 defaults: &defaults
   working_directory: /usr/src/app
-  docker:
-    - image: node:10
+  executor: node/node
 
 jobs:
   build-job:
@@ -146,6 +83,7 @@ workflows:
     jobs:
       - build-job
       - npm/publish:
+          <<: *defaults
           requires:
             - build-job
           filters:

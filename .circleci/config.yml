@@ -82,7 +82,6 @@ workflows:
     jobs:
       - build-job
       - npm/publish:
-          <<: *defaults
           requires:
             - build-job
           filters:

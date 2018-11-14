@@ -5,7 +5,9 @@ orbs:
 version: 2.1
 
 defaults: &defaults
-  executor: node/node
+  executor:
+    name: node/node
+    tag: '10'
 
 jobs:
   build-job:

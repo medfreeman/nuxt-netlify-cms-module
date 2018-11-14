@@ -31,12 +31,12 @@ jobs:
       # Greenkeeper-lockfile
       - run:
           name: Installing greenkeeper-lockfile
-          command: yarn global add greenkeeper-lockfile@1
+          command: npm i -g greenkeeper-lockfile@1
 
       # Sonar-scanner
       - run:
           name: Installing sonar-scanner
-          command: yarn global add sonarqube-scanner
+          command: npm i -g sonarqube-scanner
 
       # Install dependencies
       - run:

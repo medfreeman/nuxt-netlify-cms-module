@@ -5,7 +5,6 @@ orbs:
 version: 2.1
 
 defaults: &defaults
-  working_directory: /usr/src/app
   executor: node/node
 
 jobs:
@@ -72,7 +71,7 @@ jobs:
           command: greenkeeper-lockfile-upload
 
       - persist_to_workspace:
-          root: /usr/src/app
+          root: .
           paths:
             - dist/*
             - .circleci/*
@@ -91,4 +90,4 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
-          workspace-path: /usr/src/app
+          workspace-path: .

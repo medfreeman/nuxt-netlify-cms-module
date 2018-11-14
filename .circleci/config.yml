@@ -61,7 +61,7 @@ orbs:
                 - attach_workspace:
                     at: <<parameters.workspace-path>>
           - authenticate:
-            token: << parameters.token >>
+              token: << parameters.token >>
           - publish
 
 version: 2.1

@@ -1,5 +1,5 @@
 orbs:
-  node: circleci/node@0.0.3
+  node: circleci/node@0.0.4
   npm: ci-tools/npm@dev:1ae78b8e7391656ea1603c57c8eea1c7d6650415
 
 version: 2.1

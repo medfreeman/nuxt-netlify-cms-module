@@ -4,7 +4,7 @@ import { join } from "path";
 /* covered by nuxt */
 import { move } from "fs-extra";
 import _ from "lodash";
-import { Utils } from "nuxt";
+import { r, urlJoin } from "@nuxt/common";
 import chokidar from "chokidar";
 import pify from "pify";
 import webpack from "webpack";
@@ -137,7 +137,7 @@ export default function NetlifyCmsModule(moduleOptions) {
       path: config.adminPath,
       handler: async (req, res) => {
         if (this.nuxt.renderer.netlifyWebpackDevMiddleware) {
-          debug(`requesting url: ${Utils.urlJoin(config.adminPath, req.url)}`);
+          debug(`requesting url: ${urlJoin(config.adminPath, req.url)}`);
           await this.nuxt.renderer.netlifyWebpackDevMiddleware(req, res);
         }
         if (this.nuxt.renderer.netlifyWebpackHotMiddleware) {
@@ -147,7 +147,7 @@ export default function NetlifyCmsModule(moduleOptions) {
     });
 
     // Start watching config file
-    const patterns = [Utils.r(configManager.cmsConfigFileName)];
+    const patterns = [r(configManager.cmsConfigFileName)];
 
     const options = {
       ...this.options.watchers.chokidar,

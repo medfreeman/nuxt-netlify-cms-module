@@ -1,7 +1,7 @@
 import { existsSync } from "fs";
 import { resolve } from "path";
 
-import { Utils } from "nuxt";
+import { urlJoin } from "@nuxt/common";
 /* eslint-disable import/no-extraneous-dependencies */
 /* covered by nuxt */
 import webpack from "webpack";
@@ -16,11 +16,11 @@ export default function webpackNetlifyCmsConfig(
 ) {
   const ENTRY = resolve(__dirname, "../lib/entry");
   const BUILD_DIR = moduleConfig.buildDir;
-  const CHUNK_FILENAME = nuxtOptions.build.filenames.chunk;
-  const PUBLIC_PATH = Utils.urlJoin(
-    nuxtOptions.router.base,
-    moduleConfig.adminPath
-  );
+  const CHUNK_FILENAME = nuxtOptions.build.filenames.chunk({
+    isDev: nuxtOptions.dev,
+    isModern: nuxtOptions.modern
+  });
+  const PUBLIC_PATH = urlJoin(nuxtOptions.router.base, moduleConfig.adminPath);
   const EXTENSIONS_DIR = moduleConfig.moduleConfigDir;
   const PAGE_TITLE = moduleConfig.adminTitle;
   const PAGE_TEMPLATE = resolve(__dirname, "../lib/template", "index.html");
@@ -43,7 +43,7 @@ export default function webpackNetlifyCmsConfig(
       publicPath: PUBLIC_PATH
     },
     module: {
-      loaders: [
+      rules: [
         { test: /\.css$/, loader: "style-loader!css-loader" },
         {
           test: /\.(eot|svg|ttf|woff|woff2)$/,

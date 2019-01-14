@@ -6,7 +6,7 @@ import { urlJoin } from "@nuxt/common";
 /* covered by nuxt */
 import webpack from "webpack";
 import HTMLPlugin from "html-webpack-plugin";
-import ExtractTextPlugin from "extract-text-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
 
 export default function webpackNetlifyCmsConfig(
@@ -98,7 +98,7 @@ export default function webpackNetlifyCmsConfig(
     // Minify and optimize the JavaScript
     config.plugins.push(
       // CSS extraction
-      new ExtractTextPlugin({
+      new MiniCssExtractPlugin({
         filename: "style.[contenthash].css"
       }),
       // This is needed in webpack 2 for minify CSS

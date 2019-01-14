@@ -23,9 +23,9 @@
     "dist"
   ],
   "dependencies": {
-    "extract-text-webpack-plugin": "^3.0.2",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "js-yaml": "^3.10.0",
+    "mini-css-extract-plugin": "^0.5.0",
     "needlepoint": "^1.0.5",
     "style-loader": "^0.23.0"
   },

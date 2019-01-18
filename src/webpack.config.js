@@ -1,13 +1,13 @@
 import { existsSync } from "fs";
 import { resolve } from "path";
 
-import { urlJoin } from "@nuxt/common";
+import ExtractCssChunksPlugin from "extract-css-chunks-webpack-plugin";
+import FriendlyErrorsWebpackPlugin from "@nuxt/friendly-errors-webpack-plugin";
 /* eslint-disable import/no-extraneous-dependencies */
 /* covered by nuxt */
+import { urlJoin } from "@nuxt/common";
 import webpack from "webpack";
 import HTMLPlugin from "html-webpack-plugin";
-import ExtractTextPlugin from "extract-text-webpack-plugin";
-import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
 
 export default function webpackNetlifyCmsConfig(
   name,
@@ -27,9 +27,8 @@ export default function webpackNetlifyCmsConfig(
   const REQUIRE_EXTENSIONS = existsSync(EXTENSIONS_DIR) ? true : false;
   const HMR_CLIENT = resolve(__dirname, "../lib/hmr.client");
   const CSS_FILE = "netlify-cms/dist/cms.css";
-  const REQUIRE_CSS = existsSync(resolve(__dirname, "node_modules", CSS_FILE))
-    ? true
-    : false;
+  const REQUIRE_CSS = existsSync(resolve(__dirname, "node_modules", CSS_FILE));
+  const CSS_FILENAME = "style.[contenthash].css";
 
   const config = {
     name,
@@ -61,6 +60,22 @@ export default function webpackNetlifyCmsConfig(
       }
     },
     plugins: [
+      // CSS extraction)
+      ...(nuxtOptions.build.extractCSS
+        ? [
+            new ExtractCssChunksPlugin(
+              Object.assign(
+                {
+                  filename: CSS_FILENAME,
+                  chunkFilename: CSS_FILENAME,
+                  // TODO: https://github.com/faceyspacey/extract-css-chunks-webpack-plugin/issues/132
+                  reloadAll: true
+                },
+                nuxtOptions.build.extractCSS
+              )
+            )
+          ]
+        : []),
       new HTMLPlugin({
         title: PAGE_TITLE,
         filename: "index.html",
@@ -97,10 +112,6 @@ export default function webpackNetlifyCmsConfig(
     // --------------------------------------
     // Minify and optimize the JavaScript
     config.plugins.push(
-      // CSS extraction
-      new ExtractTextPlugin({
-        filename: "style.[contenthash].css"
-      }),
       // This is needed in webpack 2 for minify CSS
       new webpack.LoaderOptionsPlugin({
         minimize: true

@@ -31,6 +31,8 @@ export default function NetlifyCmsModule(moduleOptions) {
 
   // This will be called once when builder started
   this.nuxt.hook("build:before", builder => {
+    const bundleBuilder = builder.bundleBuilder;
+
     // This will be run just before webpack compiler starts
     this.nuxt.hook("build:compile", ({ name }) => {
       if (name !== WEBPACK_CLIENT_COMPILER_NAME) {
@@ -70,7 +72,7 @@ export default function NetlifyCmsModule(moduleOptions) {
       // in development
       if (this.options.dev) {
         // Use shared filesystem and cache
-        netlifyCompiler.outputFileSystem = builder.mfs;
+        netlifyCompiler.outputFileSystem = bundleBuilder.mfs;
         // Show a message inside console when the build is ready
         this.nuxt.hook("build:compiled", async () => {
           debug(`Serving on: ${config.adminPath}`);

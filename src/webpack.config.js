@@ -14,6 +14,7 @@ export default function webpackNetlifyCmsConfig(
   nuxtOptions,
   moduleConfig
 ) {
+  const BUILD_MODE = nuxtOptions ? "development" : "production";
   const ENTRY = resolve(__dirname, "../lib/entry");
   const BUILD_DIR = moduleConfig.buildDir;
   const CHUNK_FILENAME = nuxtOptions.build.filenames.chunk({
@@ -32,6 +33,7 @@ export default function webpackNetlifyCmsConfig(
 
   const config = {
     name,
+    mode: BUILD_MODE,
     entry: {
       app: ENTRY
     },

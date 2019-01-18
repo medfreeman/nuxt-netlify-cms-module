@@ -46,28 +46,35 @@ export default function NetlifyCmsModule(moduleOptions) {
 
       webpackConfig.plugins.push({
         apply(compiler) {
-          compiler.plugin("emit", (compilation, cb) => {
-            const netlifyConfigYAML = toYAML(configManager.cmsConfig);
-            compilation.assets[NETLIFY_CONFIG_FILE_NAME] = {
-              source: () => netlifyConfigYAML,
-              size: () => netlifyConfigYAML.length
-            };
-            cb();
-          });
+          compiler.hooks.emit.tapAsync(
+            "NetlifyCMSPlugin",
+            (compilation, cb) => {
+              const netlifyConfigYAML = toYAML(configManager.cmsConfig);
+              compilation.assets[NETLIFY_CONFIG_FILE_NAME] = {
+                source: () => netlifyConfigYAML,
+                size: () => netlifyConfigYAML.length
+              };
+              cb();
+            }
+          );
         }
       });
 
       const netlifyCompiler = webpack(webpackConfig);
 
       // This will be run just after webpack compiler ends
-      netlifyCompiler.plugin("done", async stats => {
-        // Don't reload failed builds
-        if (stats.hasErrors()) {
-          /* istanbul ignore next */
-          return;
+      netlifyCompiler.hooks.done.tapAsync(
+        "NetlifyCMSPlugin",
+        async (stats, cb) => {
+          // Don't reload failed builds
+          if (stats.hasErrors()) {
+            /* istanbul ignore next */
+            return;
+          }
+          debug(`Bundle built!`);
+          cb();
         }
-        debug(`Bundle built!`);
-      });
+      );
 
       // in development
       if (this.options.dev) {

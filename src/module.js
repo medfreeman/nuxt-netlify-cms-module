@@ -33,34 +33,32 @@ export default function NetlifyCmsModule(moduleOptions) {
   this.nuxt.hook("build:before", builder => {
     const bundleBuilder = builder.bundleBuilder;
 
+    const webpackConfig = getWebpackNetlifyConfig(
+      WEBPACK_NETLIFY_COMPILER_NAME,
+      this.options,
+      config
+    );
+
+    webpackConfig.plugins.push({
+      apply(compiler) {
+        compiler.hooks.emit.tapAsync("NetlifyCMSPlugin", (compilation, cb) => {
+          const netlifyConfigYAML = toYAML(configManager.cmsConfig);
+          compilation.assets[NETLIFY_CONFIG_FILE_NAME] = {
+            source: () => netlifyConfigYAML,
+            size: () => netlifyConfigYAML.length
+          };
+          cb();
+        });
+      }
+    });
+
+    const netlifyCompiler = webpack(webpackConfig);
+
     // This will be run just before webpack compiler starts
     this.nuxt.hook("build:compile", ({ name }) => {
       if (name !== WEBPACK_CLIENT_COMPILER_NAME) {
         return;
       }
-      const webpackConfig = getWebpackNetlifyConfig(
-        WEBPACK_NETLIFY_COMPILER_NAME,
-        this.options,
-        config
-      );
-
-      webpackConfig.plugins.push({
-        apply(compiler) {
-          compiler.hooks.emit.tapAsync(
-            "NetlifyCMSPlugin",
-            (compilation, cb) => {
-              const netlifyConfigYAML = toYAML(configManager.cmsConfig);
-              compilation.assets[NETLIFY_CONFIG_FILE_NAME] = {
-                source: () => netlifyConfigYAML,
-                size: () => netlifyConfigYAML.length
-              };
-              cb();
-            }
-          );
-        }
-      });
-
-      const netlifyCompiler = webpack(webpackConfig);
 
       // This will be run just after webpack compiler ends
       netlifyCompiler.hooks.done.tapAsync(

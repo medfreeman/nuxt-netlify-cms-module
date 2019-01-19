@@ -1,8 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { join } from "path";
+import { resolve, join } from "path";
 
 /* covered by nuxt */
-import { move } from "fs-extra";
+import { copy } from "fs-extra";
 import _ from "lodash";
 import { r, urlJoin } from "@nuxt/common";
 import chokidar from "chokidar";
@@ -195,10 +195,13 @@ export default function NetlifyCmsModule(moduleOptions) {
   }
 
   // Move cms folder from `dist/_nuxt` folder to `dist/` after nuxt generate
-  this.nuxt.hook("generate:distCopied", async generator => {
-    await move(
-      join(generator.distNuxtPath, config.adminPath).replace(/\/$/, ""),
-      join(generator.distPath, config.adminPath).replace(/\/$/, "")
+  this.nuxt.hook("generate:distCopied", async nuxt => {
+    await copy(
+      resolve(nuxt.options.buildDir, "dist", config.adminPath).replace(
+        /\/$/,
+        ""
+      ),
+      join(nuxt.distPath, config.adminPath).replace(/\/$/, "")
     );
     debug("Netlify CMS files copied");
   });

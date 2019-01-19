@@ -103,11 +103,20 @@ export default function webpackNetlifyCmsConfig(
     config.plugins.push(
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
-      // Add friendly error plugin
-      new FriendlyErrorsWebpackPlugin(),
       // https://webpack.js.org/plugins/named-modules-plugin
       new webpack.NamedModulesPlugin()
     );
+
+    // Add friendly error plugin
+    if (!nuxtOptions.build.quiet && nuxtOptions.build.friendlyErrors) {
+      config.plugins.push(
+        new FriendlyErrorsWebpackPlugin({
+          clearConsole: false,
+          reporter: "consola",
+          logLevel: "WARNING"
+        })
+      );
+    }
   } else {
     // --------------------------------------
     // Production specific config

@@ -91,7 +91,10 @@ export default function NetlifyCmsModule(moduleOptions) {
         // Use shared filesystem and cache
         netlifyCompiler.outputFileSystem = bundleBuilder.mfs;
         // Show a message inside console when the build is ready
-        this.nuxt.hook("build:compiled", async () => {
+        this.nuxt.hook("build:compiled", async name => {
+          if (name !== WEBPACK_CLIENT_COMPILER_NAME) {
+            return;
+          }
           debug(`Serving on: ${config.adminPath}`);
         });
 

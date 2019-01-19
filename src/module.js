@@ -29,6 +29,14 @@ export default function NetlifyCmsModule(moduleOptions) {
   const configManager = new ConfigManager(this.options, moduleOptions);
   const config = configManager.config;
 
+  const emitNetlifyConfig = compilation => {
+    const netlifyConfigYAML = toYAML(configManager.cmsConfig);
+    compilation.assets[NETLIFY_CONFIG_FILE_NAME] = {
+      source: () => netlifyConfigYAML,
+      size: () => netlifyConfigYAML.length
+    };
+  };
+
   // This will be called once when builder started
   this.nuxt.hook("build:before", builder => {
     const bundleBuilder = builder.bundleBuilder;
@@ -42,11 +50,15 @@ export default function NetlifyCmsModule(moduleOptions) {
     webpackConfig.plugins.push({
       apply(compiler) {
         compiler.hooks.emit.tapAsync("NetlifyCMSPlugin", (compilation, cb) => {
-          const netlifyConfigYAML = toYAML(configManager.cmsConfig);
-          compilation.assets[NETLIFY_CONFIG_FILE_NAME] = {
-            source: () => netlifyConfigYAML,
-            size: () => netlifyConfigYAML.length
-          };
+          compilation.hooks.additionalAssets.tapAsync(
+            "NetlifyCMSPlugin",
+            callback => {
+              emitNetlifyConfig(compilation);
+              callback();
+            }
+          );
+
+          emitNetlifyConfig(compilation);
           cb();
         });
       }

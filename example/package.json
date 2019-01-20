@@ -6,7 +6,7 @@
     "@nuxtjs/axios": "^5.3.1",
     "nuxt": "latest",
     "@dinamomx/nuxtent": "latest",
-    "nuxt-netlify-cms": "../"
+    "nuxt-netlify-cms": "file:../"
   },
   "scripts": {
     "dev": "nuxt",

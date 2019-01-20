@@ -2649,9 +2649,9 @@ eslint-scope@^4.0.0:
     estraverse "^4.1.1"
 
 esm@^3.0.84:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/esm/-/esm-3.1.0.tgz#89eb950b3f04b691b12f96a0d9c8de93039a1a26"
-  integrity sha512-r4Go7Wh7Wh0WPinRXeeM9PIajRsUdt8SAyki5R1obVc0+BwtqvtjbngVSSdXg0jCe2xZkY8hyBMx6q/uymUkPw==
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.1.1.tgz#810d1144522547801a58a8ea01d6566d61578223"
+  integrity sha512-Md2pR4IbR37UqubbgbA4+wiBorOEFB05Oo+g4WJW7W2ajiOhUfjZt77NzzCoQdrCb40GdKcflitm+XHDF053OQ==
 
 esprima@^4.0.0:
   version "4.0.1"
@@ -4300,12 +4300,11 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nuxt-netlify-cms@../:
+"nuxt-netlify-cms@file:..":
   version "3.1.0"
   dependencies:
     "@nuxt/friendly-errors-webpack-plugin" "^2.4.0"
     extract-css-chunks-webpack-plugin "^3.3.2"
-    html-webpack-plugin "^3.2.0"
     js-yaml "^3.10.0"
     needlepoint "^1.0.5"
     style-loader "^0.23.0"

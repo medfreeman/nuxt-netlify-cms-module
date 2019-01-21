@@ -7,10 +7,12 @@ import _ from "lodash";
 import { r, urlJoin } from "@nuxt/common";
 import consola from "consola";
 import chokidar from "chokidar";
+import env from "std-env";
 import pify from "pify";
 import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
+import WebpackBar from "webpackbar";
 import serveStatic from "serve-static";
 
 import pkg from "../package.json";
@@ -64,6 +66,34 @@ export default function NetlifyCmsModule(moduleOptions) {
       }
     });
 
+    webpackConfig.plugins.push(
+      new WebpackBar({
+        name: WEBPACK_NETLIFY_COMPILER_NAME,
+        color: "red",
+        reporters: ["basic", "fancy", "profile", "stats"],
+        basic: !this.options.build.quiet && env.minimalCLI,
+        fancy: !this.options.build.quiet && !env.minimalCLI,
+        profile: !this.options.build.quiet && this.options.build.profile,
+        stats:
+          !this.options.build.quiet &&
+          !this.options.dev &&
+          this.options.build.stats,
+        reporter: {
+          change: (_, { shortPath }) => {
+            this.nuxt.callHook("bundler:change", shortPath);
+          },
+          done: context => {
+            if (context.hasErrors) {
+              this.nuxt.callHook("bundler:error");
+            }
+          },
+          allDone: () => {
+            this.nuxt.callHook("bundler:done");
+          }
+        }
+      })
+    );
+
     const netlifyCompiler = webpack(webpackConfig);
 
     // This will be run just before webpack compiler starts
@@ -84,7 +114,6 @@ export default function NetlifyCmsModule(moduleOptions) {
             return;
           }
 
-          logger.success("Netlify-cms bundle generated");
           // Show a message inside console when the build is ready
           this.options.dev &&
             logger.info(`Netlify-cms served on: ${config.adminPath}`);
@@ -102,11 +131,13 @@ export default function NetlifyCmsModule(moduleOptions) {
         const netlifyWebpackDevMiddleware = pify(
           webpackDevMiddleware(netlifyCompiler, {
             publicPath: "/",
-            stats: builder.webpackStats,
-            noInfo: true,
-            quiet: true,
+            stats: false,
+            logLevel: "silent",
             watchOptions: this.options.watchers.webpack
           })
+        );
+        netlifyWebpackDevMiddleware.close = pify(
+          netlifyWebpackDevMiddleware.close
         );
 
         // Create webpack hot middleware

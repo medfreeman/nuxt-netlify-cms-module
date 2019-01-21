@@ -5,13 +5,13 @@ import { resolve, join } from "path";
 import { copy } from "fs-extra";
 import _ from "lodash";
 import { r, urlJoin } from "@nuxt/common";
+import consola from "consola";
 import chokidar from "chokidar";
 import pify from "pify";
 import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import serveStatic from "serve-static";
-import Debug from "debug";
 
 import pkg from "../package.json";
 
@@ -19,7 +19,7 @@ import ConfigManager from "./configManager";
 import getWebpackNetlifyConfig from "./webpack.config";
 import { toYAML } from "./utils/yaml";
 
-const debug = Debug("nuxt:netlify-cms");
+const logger = consola.withScope("nuxt:netlify-cms");
 
 const WEBPACK_CLIENT_COMPILER_NAME = "client";
 const WEBPACK_NETLIFY_COMPILER_NAME = "netlify-cms";
@@ -72,6 +72,8 @@ export default function NetlifyCmsModule(moduleOptions) {
         return;
       }
 
+      logger.success("Netlify-cms builder initialized");
+
       // This will be run just after webpack compiler ends
       netlifyCompiler.hooks.done.tapAsync(
         "NetlifyCMSPlugin",
@@ -81,7 +83,12 @@ export default function NetlifyCmsModule(moduleOptions) {
             /* istanbul ignore next */
             return;
           }
-          debug(`Bundle built!`);
+
+          logger.success("Netlify-cms bundle generated");
+          // Show a message inside console when the build is ready
+          this.options.dev &&
+            logger.info(`Netlify-cms served on: ${config.adminPath}`);
+
           cb();
         }
       );
@@ -90,13 +97,6 @@ export default function NetlifyCmsModule(moduleOptions) {
       if (this.options.dev) {
         // Use shared filesystem and cache
         netlifyCompiler.outputFileSystem = bundleBuilder.mfs;
-        // Show a message inside console when the build is ready
-        this.nuxt.hook("build:compiled", async name => {
-          if (name !== WEBPACK_CLIENT_COMPILER_NAME) {
-            return;
-          }
-          debug(`Serving on: ${config.adminPath}`);
-        });
 
         // Create webpack dev middleware
         const netlifyWebpackDevMiddleware = pify(
@@ -159,7 +159,10 @@ export default function NetlifyCmsModule(moduleOptions) {
       path: config.adminPath,
       handler: async (req, res) => {
         if (this.nuxt.renderer.netlifyWebpackDevMiddleware) {
-          debug(`requesting url: ${urlJoin(config.adminPath, req.url)}`);
+          logger.info(
+            `Netlify-cms requested url: ${urlJoin(config.adminPath, req.url)}`
+          );
+
           await this.nuxt.renderer.netlifyWebpackDevMiddleware(req, res);
         }
         if (this.nuxt.renderer.netlifyWebpackHotMiddleware) {
@@ -182,6 +185,8 @@ export default function NetlifyCmsModule(moduleOptions) {
       this.nuxt.renderer.netlifyWebpackHotMiddleware.publish({
         action: "reload"
       });
+
+      logger.info("Netlify-cms files refreshed");
     }, 200);
 
     // Watch for src Files
@@ -207,7 +212,7 @@ export default function NetlifyCmsModule(moduleOptions) {
     });
   }
 
-  // Move cms folder from `dist/_nuxt` folder to `dist/` after nuxt generate
+  // Move cms folder from `.nuxt/dist/admin` folder to `dist/` after nuxt generate
   this.nuxt.hook("generate:distCopied", async nuxt => {
     await copy(
       resolve(nuxt.options.buildDir, "dist", config.adminPath).replace(
@@ -216,7 +221,8 @@ export default function NetlifyCmsModule(moduleOptions) {
       ),
       join(nuxt.distPath, config.adminPath).replace(/\/$/, "")
     );
-    debug("Netlify CMS files copied");
+
+    logger.success("Netlify-cms files copied");
   });
 }
 

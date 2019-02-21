@@ -121,6 +121,6 @@
   },
   "prettier": {
     "printWidth": 80,
-    "parser": "babylon"
+    "parser": "babel"
   }
 }

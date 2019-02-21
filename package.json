@@ -55,7 +55,7 @@
     "nuxt": "^1.4.2",
     "prettier": "^1.7.0",
     "request-promise-native": "^1.0.4",
-    "standard-version": "^4.2.0"
+    "standard-version": "^5.0.0"
   },
   "lint-staged": {
     "*.js": [
@@ -121,6 +121,6 @@
   },
   "prettier": {
     "printWidth": 80,
-    "parser": "babylon"
+    "parser": "babel"
   }
 }

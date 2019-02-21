@@ -10,7 +10,7 @@ exports[`module generate mode admin 1`] = `
     <title>Content Manager</title>
   </head>
   <body>
-  <script type=\\"text/javascript\\" src=\\"/admin/bundle.bc82a679adb5afbfa7ce.js\\"></script></body>
+  <script type=\\"text/javascript\\" src=\\"/admin/bundle.2527f50b960cd2f8edec.js\\"></script></body>
 </html>
 "
 `;

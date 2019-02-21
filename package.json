@@ -39,11 +39,11 @@
     "cross-env": "^5.0.5",
     "eslint": "^5.0.1",
     "eslint-config-i-am-meticulous": "^11.0.0",
-    "eslint-config-prettier": "^3.0.1",
+    "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-babel": "^5.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jest": "^22.0.0",
-    "git-exec-and-restage": "^1.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
     "husky": "^1.1.3",
     "jest": "^24.1.0",
     "koa": "^2.3.0",
@@ -62,11 +62,14 @@
   },
   "lint-staged": {
     "*.js": [
-      "git-exec-and-restage prettier --write --"
+      "eslint --ignore-path .gitignore --fix",
+      "git add"
     ]
   },
   "babel": {
-    "presets": ["@babel/preset-env"],
+    "presets": [
+      "@babel/preset-env"
+    ],
     "plugins": [
       "@babel/plugin-transform-runtime",
       [
@@ -101,7 +104,8 @@
     },
     "plugins": [
       "babel",
-      "jest"
+      "jest",
+      "prettier"
     ],
     "extends": [
       "eslint-config-i-am-meticulous",

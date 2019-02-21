@@ -10,8 +10,8 @@
     "lint": "eslint --ignore-path .gitignore --fix \"**/*.js\"",
     "test": "cross-env NODE_ENV=test DEBUG=nuxt:netlify-cms jest --runInBand --forceExit",
     "pretest": "yarn lint",
-    "build": "babel --ignore src/**/__tests__/,src/**/__mocks__/ -d ./dist ./src",
-    "watch": "babel -w  --ignore src/**/__tests__/,src/**/__mocks__/ -d ./dist ./src",
+    "build": "del ./dist && babel --ignore src/**/__tests__/,src/**/__mocks__/ -d ./dist ./src",
+    "watch": "del ./dist && babel -w  --ignore src/**/__tests__/,src/**/__mocks__/ -d ./dist ./src",
     "release": "standard-version; git push --follow-tags",
     "prepare": "yarn build"
   },
@@ -37,6 +37,7 @@
     "babel-eslint": "^10.0.1",
     "codecov": "^3.0.0",
     "cross-env": "^5.0.5",
+    "del-cli": "^1.1.0",
     "eslint": "^5.0.1",
     "eslint-config-i-am-meticulous": "^11.0.0",
     "eslint-config-prettier": "^4.0.0",

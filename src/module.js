@@ -66,33 +66,34 @@ export default function NetlifyCmsModule(moduleOptions) {
       }
     });
 
-    webpackConfig.plugins.push(
-      new WebpackBar({
-        name: WEBPACK_NETLIFY_COMPILER_NAME,
-        color: "red",
-        reporters: ["basic", "fancy", "profile", "stats"],
-        basic: !this.options.build.quiet && env.minimalCLI,
-        fancy: !this.options.build.quiet && !env.minimalCLI,
-        profile: !this.options.build.quiet && this.options.build.profile,
-        stats:
-          !this.options.build.quiet &&
-          !this.options.dev &&
-          this.options.build.stats,
-        reporter: {
-          change: (_, { shortPath }) => {
-            this.nuxt.callHook("bundler:change", shortPath);
-          },
-          done: context => {
-            if (context.hasErrors) {
-              this.nuxt.callHook("bundler:error");
+    !this.options.dev &&
+      webpackConfig.plugins.push(
+        new WebpackBar({
+          name: WEBPACK_NETLIFY_COMPILER_NAME,
+          color: "red",
+          reporters: ["basic", "fancy", "profile", "stats"],
+          basic: !this.options.build.quiet && env.minimalCLI,
+          fancy: !this.options.build.quiet && !env.minimalCLI,
+          profile: !this.options.build.quiet && this.options.build.profile,
+          stats:
+            !this.options.build.quiet &&
+            !this.options.dev &&
+            this.options.build.stats,
+          reporter: {
+            change: (_, { shortPath }) => {
+              this.nuxt.callHook("bundler:change", shortPath);
+            },
+            done: context => {
+              if (context.hasErrors) {
+                this.nuxt.callHook("bundler:error");
+              }
+            },
+            allDone: () => {
+              this.nuxt.callHook("bundler:done");
             }
-          },
-          allDone: () => {
-            this.nuxt.callHook("bundler:done");
           }
-        }
-      })
-    );
+        })
+      )
 
     const netlifyCompiler = webpack(webpackConfig);
 

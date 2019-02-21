@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [4.0.0](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v3.1.0...v4.0.0) (2019-02-21)
+
+
+### Bug Fixes
+
+* **package:** update style-loader to version 0.23.0 ([#75](https://github.com/medfreeman/nuxt-netlify-cms-module/issues/75)) ([004f9eb](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/004f9eb))
+
+
+### Features
+
+* **module:** compatibility with `nuxt` v2 ([#111](https://github.com/medfreeman/nuxt-netlify-cms-module/issues/111)) ([41c450e](https://github.com/medfreeman/nuxt-netlify-cms-module/commit/41c450e)), closes [nuxt-community/nuxtent-module#190](https://github.com/nuxt-community/nuxtent-module/issues/190)
+
+
+### BREAKING CHANGES
+
+* **module:** This module is no more compatible with nuxt versions older than v2.0.0
+Update `nuxt` devDependency to v.2.0.0
+
+Compatibility with webpack v4
+Add `FriendlyErrorsWebpackPlugin`
+Add `@nuxt/friendly-errors-webpack-plugin`, `extract-css-chunks-webpack-plugin`
+Use `consola` instead of debug for logging, improve messages
+Add `webpackbar` in production, improve logging
+Upgrade husky, move config to its own key
+Remove `.yarnrc` engine compatibility fix
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/medfreeman/nuxt-netlify-cms-module/compare/v3.0.2...v3.1.0) (2018-08-07)
 

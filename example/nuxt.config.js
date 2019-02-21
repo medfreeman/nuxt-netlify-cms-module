@@ -1,5 +1,5 @@
 module.exports = {
-  modules: ["nuxtent", "nuxt-netlify-cms"],
+  modules: ["@dinamomx/nuxtent", "nuxt-netlify-cms"],
   nuxtent: {
     content: {
       page: "/_post",

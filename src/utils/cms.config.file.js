@@ -1,8 +1,5 @@
-import { singleton } from "needlepoint";
-
 import { loadYAMLFile } from "./yaml";
 
-@singleton
 class CmsConfig {
   constructor(fileName) {
     this._fileName = fileName;

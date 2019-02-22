@@ -85,7 +85,10 @@ workflows:
   version: 2
   build:
     jobs:
-      - build-job
+      - build-job:
+          filters:
+            tags:
+              only: /.*/
       - deploy-job:
           requires:
             - build-job

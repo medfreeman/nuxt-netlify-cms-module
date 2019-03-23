@@ -4070,6 +4070,17 @@ extract-css-chunks-webpack-plugin@^3.3.2:
     schema-utils "^1.0.0"
     webpack-sources "^1.1.0"
 
+extract-css-chunks-webpack-plugin@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/extract-css-chunks-webpack-plugin/-/extract-css-chunks-webpack-plugin-4.0.2.tgz#67c1de090079247b9eb4f9d179cd2717ca43c361"
+  integrity sha512-svwrtf8iENEm5DRhzJp2qpfvapEsVEkrElqUqz8/ZtyfvKA8uT6y4GneOgKBCKK6oh+iVPSHZ+FrI89sxG6EOQ==
+  dependencies:
+    loader-utils "^1.1.0"
+    lodash "^4.17.11"
+    normalize-url "^3.0.0"
+    schema-utils "^1.0.0"
+    webpack-sources "^1.1.0"
+
 extsprintf@1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.3.0.tgz#96918440e3041a7a414f8c52e3c574eb3c3e1e05"

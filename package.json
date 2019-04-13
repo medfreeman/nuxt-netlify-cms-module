@@ -42,7 +42,7 @@
     "eslint-config-i-am-meticulous": "^11.0.0",
     "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-babel": "^5.0.0",
-    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-import": "^2.17.1",
     "eslint-plugin-jest": "^22.0.0",
     "eslint-plugin-prettier": "^3.0.1",
     "husky": "^1.1.3",

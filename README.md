@@ -96,8 +96,8 @@ adminTitle defines the html title of the page where Netlify CMS will be served.
 extend is a function you can use to customize webpack configuration.
 
 - Arguments:
-  1. The Webpack config object.
-  2. An object with the following keys (all boolean): `isDev`.
+  - The Webpack config object.
+  - An object with the following keys (all boolean): `isDev`.
 
 ### `cmsConfig`
 - Default: `{

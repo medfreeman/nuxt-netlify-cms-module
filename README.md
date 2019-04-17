@@ -90,6 +90,15 @@ With nuxt default configuration, it will be served to `http://localhost:3000/adm
 
 adminTitle defines the html title of the page where Netlify CMS will be served.
 
+### `extend`
+- Default: `undefined`
+
+extend is a function you can use to customize webpack configuration.
+
+- Arguments:
+  - The Webpack config object.
+  - An object with the following keys (all boolean): `isDev`.
+
 ### `cmsConfig`
 - Default: `{
     media_folder: "static/uploads"

@@ -130,5 +130,9 @@ export default function webpackNetlifyCmsConfig(
     );
   }
 
+  if (typeof moduleConfig.extend === 'function') {
+    moduleConfig.extend(config, { isDev: nuxtOptions.dev })
+  }
+
   return config;
 }

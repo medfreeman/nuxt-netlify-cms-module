@@ -16,6 +16,7 @@ const CMS_CONFIG_FILENAME = "config.yml";
 const DEFAULTS = {
   adminPath: "admin",
   adminTitle: "Content Manager",
+  extend: undefined,
   cmsConfig: {
     media_folder: "static/uploads"
   }

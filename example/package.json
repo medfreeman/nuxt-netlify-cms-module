@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Easy Netlify CMS integration with nuxt.js example",
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.1",
+    "@nuxtjs/axios": "^5.5.1",
     "nuxt": "latest",
     "@dinamomx/nuxtent": "latest",
     "nuxt-netlify-cms": "file:../"

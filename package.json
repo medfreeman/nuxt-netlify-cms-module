@@ -35,7 +35,7 @@
     "@babel/preset-env": "^7.3.1",
     "@nuxt/common": "^2.3.4",
     "babel-eslint": "^10.0.1",
-    "codecov": "^3.0.0",
+    "codecov": "^3.6.1",
     "cross-env": "^5.0.5",
     "del-cli": "^1.1.0",
     "eslint": "^5.0.1",

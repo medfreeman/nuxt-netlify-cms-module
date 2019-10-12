@@ -3575,7 +3575,7 @@ emotion@^9.1.2, emotion@^9.2.6:
     babel-plugin-emotion "^9.2.11"
     create-emotion "^9.2.12"
 
-encodeurl@~1.0.1, encodeurl@~1.0.2:
+encodeurl@^1.0.2, encodeurl@~1.0.1, encodeurl@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/encodeurl/-/encodeurl-1.0.2.tgz#ad3ff4c86ec2d029322f5a02c3a9a606c95b3f59"
   integrity sha1-rT/0yG7C0CkyL1oCw6mmBslbP1k=
@@ -6294,10 +6294,10 @@ koa-static@^5.0.0:
     debug "^3.1.0"
     koa-send "^5.0.0"
 
-koa@^2.3.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/koa/-/koa-2.7.0.tgz#7e00843506942b9d82c6cc33749f657c6e5e7adf"
-  integrity sha512-7ojD05s2Q+hFudF8tDLZ1CpCdVZw8JQELWSkcfG9bdtoTDzMmkRF6BQBU7JzIzCCOY3xd3tftiy/loHBUYaY2Q==
+koa@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/koa/-/koa-2.9.0.tgz#ec957fc83cb2722fa56d26c1b2231d402d8542a2"
+  integrity sha512-Y1kb5wqcEm3FuFmPenIX3o61zbKVx+wy0p8kiG+DAv70WiTrnoupDQy8fpLYT6esaJmLdzgzmGbLCKcamw+VvA==
   dependencies:
     accepts "^1.3.5"
     cache-content-type "^1.0.0"
@@ -6308,6 +6308,7 @@ koa@^2.3.0:
     delegates "^1.0.0"
     depd "^1.1.2"
     destroy "^1.0.4"
+    encodeurl "^1.0.2"
     error-inject "^1.0.0"
     escape-html "^1.0.3"
     fresh "~0.5.2"

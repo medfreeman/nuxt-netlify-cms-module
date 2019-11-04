@@ -53,7 +53,7 @@
     "netlify-cms": "2.4.2",
     "nuxt": "^2.0.0",
     "prettier": "^1.7.0",
-    "request-promise-native": "^1.0.4",
+    "request-promise-native": "^1.0.8",
     "standard-version": "^5.0.0"
   },
   "husky": {

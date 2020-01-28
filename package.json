@@ -40,7 +40,7 @@
     "del-cli": "^1.1.0",
     "eslint": "^5.0.1",
     "eslint-config-i-am-meticulous": "^11.0.0",
-    "eslint-config-prettier": "^4.0.0",
+    "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-babel": "^5.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jest": "^22.0.0",

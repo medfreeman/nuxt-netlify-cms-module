@@ -36,7 +36,7 @@
     "@nuxt/common": "^2.3.4",
     "babel-eslint": "^10.0.1",
     "codecov": "^3.0.0",
-    "cross-env": "^5.0.5",
+    "cross-env": "^7.0.1",
     "del-cli": "^1.1.0",
     "eslint": "^5.0.1",
     "eslint-config-i-am-meticulous": "^11.0.0",

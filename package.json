@@ -49,7 +49,7 @@
     "jest": "^24.1.0",
     "koa": "^2.3.0",
     "koa-static": "^5.0.0",
-    "lint-staged": "^8.0.4",
+    "lint-staged": "^10.2.4",
     "netlify-cms": "2.4.2",
     "nuxt": "^2.0.0",
     "prettier": "^1.7.0",
